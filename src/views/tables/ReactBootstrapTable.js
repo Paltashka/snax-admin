@@ -110,7 +110,7 @@ const Datatables = () => {
                   }
                   if(item === "icon") {
                     return <TableHeaderColumn width="100" dataField={item}  dataFormat={(cell, format) => {
-                        return <img src={cell} dataSort={ true }/>
+                        return <img style={{width:32, height:32}} src={cell} dataSort={ true }/>
                     } }>
                       <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                     </TableHeaderColumn>

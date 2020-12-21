@@ -95,57 +95,57 @@ const Reacttable = () => {
   });
   return (
     <div>
-      <Modal isOpen={modal} toggle={toggle.bind(null)}>
-        <ModalHeader toggle={toggle.bind(null)}>Modal title</ModalHeader>
-        <ModalBody>
-          <Form onSubmit={(event) => handleSubmit(event)}>
-            <Input type="hidden" name="id" id="id" defaultValue={obj.id} />
-            <FormGroup>
-              <Label for="name">Name</Label>
-              <Input
-                type="text"
-                name="name"
-                id="name"
-                defaultValue={obj.name}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="designation">Designation</Label>
-              <Input
-                type="text"
-                name="designation"
-                id="designation"
-                defaultValue={obj.designation}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="location">Location</Label>
-              <Input
-                type="text"
-                name="location"
-                id="location"
-                defaultValue={obj.location}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="age">Age</Label>
-              <Input type="text" name="age" id="age" defaultValue={obj.age} />
-            </FormGroup>
-            <FormGroup>
-              <Button color="primary" type="submit">
-                Save
-              </Button>
-              <Button
-                color="secondary"
-                className="ml-1"
-                onClick={toggle.bind(null)}
-              >
-                Cancel
-              </Button>
-            </FormGroup>
-          </Form>
-        </ModalBody>
-      </Modal>
+      {/*<Modal isOpen={modal} toggle={toggle.bind(null)}>*/}
+      {/*  <ModalHeader toggle={toggle.bind(null)}>Modal title</ModalHeader>*/}
+      {/*  <ModalBody>*/}
+      {/*    <Form onSubmit={(event) => handleSubmit(event)}>*/}
+      {/*      <Input type="hidden" name="id" id="id" defaultValue={obj.id} />*/}
+      {/*      <FormGroup>*/}
+      {/*        <Label for="name">Name</Label>*/}
+      {/*        <Input*/}
+      {/*          type="text"*/}
+      {/*          name="name"*/}
+      {/*          id="name"*/}
+      {/*          defaultValue={obj.name}*/}
+      {/*        />*/}
+      {/*      </FormGroup>*/}
+      {/*      <FormGroup>*/}
+      {/*        <Label for="designation">Designation</Label>*/}
+      {/*        <Input*/}
+      {/*          type="text"*/}
+      {/*          name="designation"*/}
+      {/*          id="designation"*/}
+      {/*          defaultValue={obj.designation}*/}
+      {/*        />*/}
+      {/*      </FormGroup>*/}
+      {/*      <FormGroup>*/}
+      {/*        <Label for="location">Location</Label>*/}
+      {/*        <Input*/}
+      {/*          type="text"*/}
+      {/*          name="location"*/}
+      {/*          id="location"*/}
+      {/*          defaultValue={obj.location}*/}
+      {/*        />*/}
+      {/*      </FormGroup>*/}
+      {/*      <FormGroup>*/}
+      {/*        <Label for="age">Age</Label>*/}
+      {/*        <Input type="text" name="age" id="age" defaultValue={obj.age} />*/}
+      {/*      </FormGroup>*/}
+      {/*      <FormGroup>*/}
+      {/*        <Button color="primary" type="submit">*/}
+      {/*          Save*/}
+      {/*        </Button>*/}
+      {/*        <Button*/}
+      {/*          color="secondary"*/}
+      {/*          className="ml-1"*/}
+      {/*          onClick={toggle.bind(null)}*/}
+      {/*        >*/}
+      {/*          Cancel*/}
+      {/*        </Button>*/}
+      {/*      </FormGroup>*/}
+      {/*    </Form>*/}
+      {/*  </ModalBody>*/}
+      {/*</Modal>*/}
       {/*--------------------------------------------------------------------------------*/}
       {/* Start Inner Div*/}
       {/*--------------------------------------------------------------------------------*/}

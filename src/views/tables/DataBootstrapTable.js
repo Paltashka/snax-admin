@@ -2,7 +2,7 @@ const jsondata = [
     {
         "id": "1",
         "icon": "http://icons.wxug.com/i/c/k/clear.gif",
-        "name": "adsfads",
+        "name": "Jon",
         "locked": true,
         "color template": "Airi ",
         "number of skins": "Female",

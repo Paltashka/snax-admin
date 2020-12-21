@@ -1,130 +1,166 @@
-import React from 'react';
-import { Card, CardBody, CardTitle, CardSubtitle, Row, Col } from 'reactstrap';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import React, {useState} from "react";
+import * as data from "../tables/DataGeneralDetail";
+import { Row, Col, Card, CardBody } from "reactstrap";
+import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import {upperCasePipe} from "../../components/helpers/upperCasePipe";
+//This is for the Delete row
+// function onAfterDeleteRow(rowKeys) {
+//   alert("The rowkey you drop: " + rowKeys);
+// }
+//This is for the insert new row
+/*
+function onAfterInsertRow(row) {
+  let newRowStr = '';
 
-import {
-    RevenueCards,
-    CardBandwidth,
-    CardDownload,
-    Visitors,
-    CurrentVisitor,
-    Feeds,
-    NewsleterCompaign,
-    CardProfile,
-    MonthTable,
-    RecentComment,
-    TodoList
-} from '../../components/dashboard/index.js';
+  for (const prop in row) {
+    newRowStr += prop + ': ' + row[prop] + ' \n';
+  }
+  alert('The new row is:\n ' + newRowStr);
+}*/
+//This is for the Search item
+// function afterSearch(searchText, result) {
+//   console.log("Your search text is " + searchText);
+//   console.log("Result is:");
+//   for (let i = 0; i < result.length; i++) {
+//     console.log(
+//       "Fruit: " + result[i].id + ", " + result[i].name + ", " + result[i].price
+//     );
+//   }
+// }
 
-import img1 from '../../assets/images/users/1.jpg';
-import img4 from '../../assets/images/users/4.jpg';
-import img5 from '../../assets/images/users/5.jpg';
+const selectRowProp = {
+    mode: "checkbox",
+};
+const cellEditProp = {
+    mode: "click",
+    blurToSave: true,
+};
 
-const SecondDashboard = () => {
+const headers = ['id', 'icon', 'name', 'locked', 'color template', 'coins balance', 'time limit', 'performance', 'live'];
+
+function jobNameValidator(value, row) {
+    // If this function return an object, you got some ability to customize your error message
+    const response = { isValid: true, notification: { type: 'success', msg: '', title: '' } };
+    if (!value) {
+        response.isValid = false;
+        response.notification.type = 'error';
+        response.notification.msg = 'Value must be inserted';
+        response.notification.title = 'Requested Value';
+    }
+    // else if (value.length < 10) {
+    //   response.isValid = false;
+    //   response.notification.type = 'error';
+    //   response.notification.msg = 'Value must have 10+ characters';
+    //   response.notification.title = 'Invalid Value';
+    // }
+    return response;
+}
+
+
+const Datatables = () => {
+
+    // const [allData, setAllData] = useState(data.jsondata);
+    // const [selectedFilter, setFilter] = useState(null);
+
+    // useEffect(() => {
+    //   const arr = allData.concat().sort((a, b) => {
+    //     if (a[selectedFilter] < b[selectedFilter]) {
+    //       return -1;
+    //     }
+    //     if (a[selectedFilter] > b[selectedFilter]) {
+    //       return 1;
+    //     }
+    //     return 0;
+    //   });
+    //   setAllData(arr)
+    //   console.log(arr)
+    // },[selectedFilter])
+    const [items, setItems] = useState(data.jsondata);
+
+    const options = {
+        // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows
+        // afterDeleteRow: onAfterDeleteRow, // A hook for after droping rows.
+        // afterSearch: afterSearch, // define a after search hook
+    };
+
+    const handleLiveClick = (id) => {
+        const object = items.find(i => {
+            return i.id === id
+        });
+        const index = items.findIndex(el => el.id === object.id);
+
+        const newObject = {...object, live: !object.live};
+
+        const newArr = [
+            ...items.slice(0, index),
+            newObject,
+            ...items.slice(index + 1),
+        ];
+
+        setItems(newArr);
+    }
+
+    console.log('ZXC', items);
+
     return (
         <div>
-            <RevenueCards />
-            {/* --------------------------------------------------------------------------------*/}
-            {/* Row-1                                                                          */}
-            {/* --------------------------------------------------------------------------------*/}
             <Row>
-                <Col lg="4" md="12">
-                    <CardBandwidth />
-                    <CardDownload />
-                </Col>
-                <Col lg="4" md="12">
-                    <Visitors />
-                </Col>
-                <Col lg="4" md="12">
-                    <CurrentVisitor />
-                </Col>
-            </Row>
-            {/* --------------------------------------------------------------------------------*/}
-            {/* Row-2                                                                          */}
-            {/* --------------------------------------------------------------------------------*/}
-            <Row>
-                <Col md="12" xl="4" xlg="3">
-                    <Feeds />
-                </Col>
-                <Col md="12" xl="8" xlg="9">
-                    <NewsleterCompaign />
-                </Col>
-            </Row>
-            <Row>
-                <Col lg="8">
-                    <MonthTable />
-                </Col>
-                <Col lg="4">
-                    <CardProfile />
-                </Col>
-            </Row>
-            {/* --------------------------------------------------------------------------------*/}
-            {/* Row-3                                                                          */}
-            {/* --------------------------------------------------------------------------------*/}
-            <Row>
-                <Col lg="6">
+                <Col md="12">
                     <Card>
                         <CardBody>
-                            <CardTitle>Recent Comments</CardTitle>
-                            <CardSubtitle>
-                                Latest Comments on users from Material
-                </CardSubtitle>
+                            <BootstrapTable
+                                striped
+                                hover
+                                condensed
+                                // search={true}
+                                data={items}
+                                // deleteRow={true}
+                                // selectRow={selectRowProp}
+                                // pagination
+                                insertRow={true}
+                                // columnFilter={true}
+                                options={options}
+                                cellEdit={cellEditProp}
+                                tableHeaderClass="mb-4"
+
+                            >
+
+                                {headers.map((item, i)=>{
+
+                                    if(i === 0) {
+                                        return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } isKey>
+                                            <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                                        </TableHeaderColumn>
+                                    }
+                                    else if(item === "icon") {
+                                        return <TableHeaderColumn width="100" dataField={item}  dataFormat={(cell, format) => {
+                                            return <img style={{width:32, height:32}} src={cell} dataSort={ true }/>
+                                        } }>
+                                            <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                                        </TableHeaderColumn>
+                                    } else if(item === 'live'){
+                                        return <TableHeaderColumn width="100" dataField={item} dataSort={ true }  editable={false} dataFormat={(cell, row) => {
+                                            return <span onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</span>
+                                        }}>
+                                            <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                                        </TableHeaderColumn>
+                                    } else if(i > 0) {
+                                        return <TableHeaderColumn width="100" dataField={item} dataSort={true}
+                                                                  editable={{validator: jobNameValidator}}>
+                                            <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
+                                        </TableHeaderColumn>
+                                    }
+
+                                   else return <TableHeaderColumn width="100" dataField={item}  dataSort={ true }>
+                                        <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                                    </TableHeaderColumn>
+                                })}
+                            </BootstrapTable>
                         </CardBody>
-                        <div
-                            className="comment-widgets scrollable"
-                            style={{ "height": '382px' }}
-                        >
-                            <PerfectScrollbar>
-                                <RecentComment
-                                    image={img1}
-                                    badge="Pending"
-                                    badgeColor="info"
-                                    name="James Anderson"
-                                    comment="Lorem Ipsum is simply dummy text of the printing and type setting industry."
-                                    date="April 14, 2016"
-                                />
-                                <RecentComment
-                                    image={img4}
-                                    badge="Approved"
-                                    badgeColor="success"
-                                    name="Michael Jorden"
-                                    comment="Lorem Ipsum is simply dummy text of the printing and type setting industry."
-                                    date="April 14, 2016"
-                                />
-                                <RecentComment
-                                    image={img5}
-                                    badge="Rejected"
-                                    badgeColor="danger"
-                                    name="Johnathan Doeting"
-                                    comment="Lorem Ipsum is simply dummy text of the printing and type setting industry."
-                                    date="April 14, 2016"
-                                />
-                                <RecentComment
-                                    image={img1}
-                                    badge="Pending"
-                                    badgeColor="info"
-                                    name="James Anderson"
-                                    comment="Lorem Ipsum is simply dummy text of the printing and type setting industry."
-                                    date="April 14, 2016"
-                                />
-                                <RecentComment
-                                    image={img4}
-                                    badge="Approved"
-                                    badgeColor="success"
-                                    name="Michael Jorden"
-                                    comment="Lorem Ipsum is simply dummy text of the printing and type setting industry."
-                                    date="April 14, 2016"
-                                />
-                            </PerfectScrollbar>
-                        </div>
                     </Card>
-                </Col>
-                <Col lg="6">
-                    <TodoList />
                 </Col>
             </Row>
         </div>
     );
-}
-
-export default SecondDashboard;
+};
+export default Datatables;
