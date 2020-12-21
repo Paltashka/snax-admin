@@ -1,6 +1,9 @@
 {
   "name": "materialpro",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  },
   "homepage": "/",
   "description": "material-pro react admin comes with the beautiful Ui with easy to use code",
   "main": "index.js",
