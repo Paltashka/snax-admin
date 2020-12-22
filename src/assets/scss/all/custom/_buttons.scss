@@ -112,3 +112,25 @@
 .btn.active .text {
   display: none;
 }
+
+
+.btn-red{
+  cursor: pointer;
+  background: red;
+  text-align: center;
+  border-radius: 10%;
+  height: 21px;
+  color: white;
+  width: 43px;
+  margin-left: 24%;
+}
+.btn-green{
+  cursor: pointer;
+  background: green;
+  text-align: center;
+  border-radius: 10%;
+  height: 21px;
+  color: white;
+  width: 43px;
+  margin-left: 24%;
+}

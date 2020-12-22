@@ -6,7 +6,7 @@ const jsondata = [
         "locked": true,
         "color template": "Airi ",
         "number of skins": "Female",
-        "live": "Quantum Computer Services",
+        "live": "Quantum",
         "last update": 22
     },
     {
@@ -16,7 +16,7 @@ const jsondata = [
         "locked": true,
         "color template": "adsf",
         "number of skins": "Female",
-        "live": "Quantum Computer Services",
+        "live": "Quantum",
         "last update": 23
     },
     {
@@ -26,7 +26,7 @@ const jsondata = [
         "locked": true,
         "color template": "cvb",
         "number of skins": "Female",
-        "live": "Quantum Computer Services",
+        "live": "Quantum ",
         "last update": 24
     },
     {
@@ -36,7 +36,7 @@ const jsondata = [
         "locked": true,
         "color template": "trru",
         "number of skins": "Female",
-        "live": "Quantum Computer Services",
+        "live": "Quantum",
         "last update": 25
     },
     {
@@ -46,7 +46,7 @@ const jsondata = [
         "locked": true,
         "color template": "okj",
         "number of skins": "Female",
-        "live": "Quantum Computer Services",
+        "live": "Quantum",
         "last update": 26
     },
     {
@@ -56,7 +56,7 @@ const jsondata = [
         "locked": true,
         "color template": "cxv",
         "number of skins": "Female",
-        "live": "Quantum Computer Services",
+        "live": "Quantum",
         "last update": 27
     },
     {
@@ -66,7 +66,7 @@ const jsondata = [
         "locked": true,
         "color template": "dfgh",
         "number of skins": "Female",
-        "live": "Quantum Computer Services",
+        "live": "Quantum",
         "last update": 28
     },
     {
@@ -76,7 +76,7 @@ const jsondata = [
         "locked": true,
         "color template": ";pkl",
         "number of skins": "Female",
-        "live": "Quantum Computer Services",
+        "live": "Quantum",
         "last update": 29
     }
 ]

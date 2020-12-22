@@ -128,30 +128,30 @@ const Datatables = () => {
                                 {headers.map((item, i)=>{
 
                                     if(i === 0) {
-                                        return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } isKey>
+                                        return <TableHeaderColumn  width="100"  dataField={item} dataAlign = 'center'  dataSort={ true } isKey>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
                                     }
                                     else if(item === "icon") {
-                                        return <TableHeaderColumn width="100" dataField={item}  dataFormat={(cell, format) => {
-                                            return <img style={{width:32, height:32}} src={cell} dataSort={ true }/>
+                                        return <TableHeaderColumn width="100" dataField={item} dataAlign = 'center' dataFormat={(cell, format) => {
+                                            return <img style={{width:32, height:32}} src={cell}/>
                                         } }>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
                                     } else if(item === 'live'){
-                                        return <TableHeaderColumn width="100" dataField={item} dataSort={ true }  editable={false} dataFormat={(cell, row) => {
-                                            return <span onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</span>
+                                        return <TableHeaderColumn width="100" dataField={item} dataSort={ true } dataAlign = 'center'  editable={false} dataFormat={(cell, row) => {
+                                            return <div className={cell ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</div>
                                         }}>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
                                     } else if(i > 0) {
-                                        return <TableHeaderColumn width="100" dataField={item} dataSort={true}
+                                        return <TableHeaderColumn width="100" dataField={item} dataAlign = 'center' dataSort={true}
                                                                   editable={{validator: jobNameValidator}}>
                                             <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
                                     }
 
-                                   else return <TableHeaderColumn width="100" dataField={item}  dataSort={ true }>
+                                   else return <TableHeaderColumn width="100" dataField={item} dataAlign = 'center' dataSort={ true }>
                                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                     </TableHeaderColumn>
                                 })}
