@@ -28,9 +28,7 @@ function onAfterInsertRow(row) {
 //   }
 // }
 
-const selectRowProp = {
-    mode: "checkbox",
-};
+
 const cellEditProp = {
     mode: "click",
     blurToSave: true,
@@ -100,7 +98,6 @@ const Datatables = () => {
         setItems(newArr);
     }
 
-    console.log('ZXC', items);
 
     return (
         <div>

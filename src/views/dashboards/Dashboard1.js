@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Row, Col, Card, CardBody} from 'reactstrap';
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
 import * as data from "../tables/DataBootstrapTable";
@@ -39,6 +39,27 @@ function jobNameValidator(value, row) {
 }
 
 const FirstDashboard = () => {
+
+    const [items, setItems] = useState(data.jsondata);
+
+    const handleLiveClick = (id) => {
+        const object = items.find(i => {
+            return i.id === id
+        });
+        const index = items.findIndex(el => el.id === object.id);
+
+        const newObject = {...object, live: !object.live};
+
+        const newArr = [
+            ...items.slice(0, index),
+            newObject,
+            ...items.slice(index + 1),
+        ];
+
+        setItems(newArr);
+    }
+
+
     return (
         <div>
             <Row>
@@ -50,7 +71,7 @@ const FirstDashboard = () => {
                                 hover
                                 condensed
                                 search={true}
-                                data={data.jsondata}
+                                data={items}
                                 deleteRow={true}
                                 selectRow={selectRowProp}
                                 // pagination
@@ -66,16 +87,19 @@ const FirstDashboard = () => {
                                         return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } isKey>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
-                                    }
-                                    if(item === "icon") {
+                                    }else if(item === "icon") {
                                         return <TableHeaderColumn width="100" dataField={item}  dataFormat={(cell, format) => {
                                             return <img src={cell} dataSort={ true }/>
                                         } }>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
-                                    }
-
-                                    if(i >= 0 && i <= 6){
+                                    }else if(item === 'live'){
+                                        return <TableHeaderColumn width="100" dataField={item} dataSort={ true } dataAlign = 'center'  editable={false} dataFormat={(cell, row) => {
+                                            return <div className={cell ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</div>
+                                        }}>
+                                            <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                                        </TableHeaderColumn>
+                                    }else  if(i > 0 ){
                                         return <TableHeaderColumn width="100" dataField={item} dataSort={ true }  editable={{validator: jobNameValidator}}>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
