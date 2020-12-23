@@ -5,11 +5,6 @@ import * as data from "../tables/DataBootstrapTable";
 import {upperCasePipe} from "../../components/helpers/upperCasePipe";
 
 
-const options = {
-  // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows
-  // afterDeleteRow: onAfterDeleteRow, // A hook for after droping rows.
-  // afterSearch: afterSearch, // define a after search hook
-};
 const selectRowProp = {
   mode: "checkbox",
 };
@@ -18,7 +13,7 @@ const cellEditProp = {
   blurToSave: true,
 };
 
-const headers = ['id', 'icon', 'name', 'locked', 'color template', 'number of skins', 'live', 'last update'];
+const headers = ['id', 'icon', 'name', 'locked', 'color template','coins balance', 'time limit','performance', 'number of skins', 'live', 'last update'];
 
 function jobNameValidator(value, row) {
   // If this function return an object, you got some ability to customize your error message
@@ -38,9 +33,38 @@ function jobNameValidator(value, row) {
   return response;
 }
 
+
+
 const FirstDashboard = () => {
 
+  const createCustomExportCSVButton = () => {
+    return (
+        <button style={ { color: 'white', backgroundColor: 'green',  width: '95px', height: '30px', marginRight: '10px' } } onClick={()=>(changeHidden())}>{isHidden ? 'Show more':'Hide'}</button>
+    );
+
+  }
+  const createCustomExportDeleteButton = (onClick) => {
+    return (
+        <button style={ { color: 'white', backgroundColor: 'red', marginLeft: '10px' } } onClick={onClick}>Delete</button>
+    );
+
+  }
+
+  const options = {
+    exportCSVBtn: createCustomExportCSVButton,
+    deleteBtn: createCustomExportDeleteButton
+    // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows
+    // afterDeleteRow: onAfterDeleteRow, // A hook for after droping rows.
+    // afterSearch: afterSearch, // define a after search hook
+  };
+
   const [items, setItems] = useState(data.jsondata);
+  const [isHidden, setHidden] = useState(true)
+
+  function changeHidden(){
+    setHidden(!isHidden)
+    return isHidden
+  }
 
   const handleLiveClick = (id) => {
     const object = items.find(i => {
@@ -60,6 +84,12 @@ const FirstDashboard = () => {
   }
 
 
+  const locked = [ 'Yes', 'No' ];
+
+  const colorTemplate = [ 'Main color', 'Secondary color', 'Secondary color 2' ];
+
+  const performance = ['Time', 'Moves', 'Special']
+
   return (
       <div>
         <Row>
@@ -74,17 +104,18 @@ const FirstDashboard = () => {
                     data={items}
                     deleteRow={true}
                     selectRow={selectRowProp}
-                    // pagination
+                    pagination
                     insertRow={true}
+                    exportCSV={true}
                     columnFilter={true}
                     options={options}
                     cellEdit={cellEditProp}
-                    tableHeaderClass="mb-0"
+                    tableHeaderClass="mb-4"
                 >
 
                   {headers.map((item, i)=>{
                     if(i === 0) {
-                      return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } isKey>
+                      return <TableHeaderColumn width="100" dataField={item} editable={ { type: 'number', options: { values: '1' }  } } dataSort={ true } isKey>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }else if(item === "icon") {
@@ -94,21 +125,33 @@ const FirstDashboard = () => {
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }else if(item === 'live'){
-                      return <TableHeaderColumn width="100" dataField={item} dataSort={ true } dataAlign = 'center'  editable={false} dataFormat={(cell, row) => {
+                      return <TableHeaderColumn width="100" dataField={item} dataSort={ true } dataAlign = 'center'    dataFormat={(cell, row) => {
                         return <div className={cell ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</div>
                       }}>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
-                    }else  if(i > 0 ){
-                      return <TableHeaderColumn width="100" dataField={item} dataSort={ true }  editable={{validator: jobNameValidator}}>
+                    }else if(item === 'locked'){
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'select', options: { values: locked } } }  dataSort={ true }>
+                        <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                      </TableHeaderColumn>
+                    } else if(item === 'color template'){
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'select', options: { values: colorTemplate } } }  dataSort={ true }>
+                        <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                      </TableHeaderColumn>
+                    }else if(item === 'coins balance' || item === 'time limit' || item === 'performance'){
+                      return <TableHeaderColumn width="100" dataField={item} hidden={isHidden} editable={ { type: 'select', options: { values: locked } } }  dataSort={ true }>
+                        <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                      </TableHeaderColumn>
+                    }else if(item){
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'select', options: { values: colorTemplate } } }  dataSort={ true }>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }
-
-                    return <TableHeaderColumn width="100" dataField={item}  dataSort={ true }>
-                      <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
-                    </TableHeaderColumn>
+                    // else return <TableHeaderColumn width="100" dataField={item}   dataSort={ true }>
+                    //   <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                    // </TableHeaderColumn>
                   })}
+
                 </BootstrapTable>
               </CardBody>
             </Card>
