@@ -39,13 +39,13 @@ const FirstDashboard = () => {
 
   const createCustomExportCSVButton = () => {
     return (
-        <button style={ { color: 'white', backgroundColor: 'green',  width: '95px', height: '30px', marginRight: '10px' } } onClick={()=>(changeHidden())}>{isHidden ? 'Show more':'Hide'}</button>
+        <button style={ { color: 'white', backgroundColor: 'green',  width: '95px', height: '30px', marginRight: '10px', border: 0 } } onClick={()=>(changeHidden())}>{isHidden ? 'Show more':'Hide'}</button>
     );
 
   }
   const createCustomExportDeleteButton = (onClick) => {
     return (
-        <button style={ { color: 'white', backgroundColor: 'red', marginLeft: '10px' } } onClick={onClick}>Delete</button>
+        <button style={ { color: 'white', backgroundColor: 'red', marginLeft: '10px', border: 0 } } onClick={onClick}>Delete</button>
     );
 
   }
@@ -84,11 +84,20 @@ const FirstDashboard = () => {
   }
 
 
-  const locked = [ 'Yes', 'No' ];
+  const locked = [ '', 'Yes', 'No' ];
 
-  const colorTemplate = [ 'Main color', 'Secondary color', 'Secondary color 2' ];
+  const colorTemplate = [ '', 'Main color', 'Secondary color', 'Secondary color 2' ];
 
-  const performance = ['Time', 'Moves', 'Special']
+  const performance = ['', 'Time', 'Moves', 'Special'];
+
+  const timeLimit = (lim=90)=>{
+    let res = [''];
+    for (let i =0; i<=lim; i+=5){
+      res.push(i)
+    }
+    return res
+  }
+
 
   return (
       <div>
@@ -104,7 +113,7 @@ const FirstDashboard = () => {
                     data={items}
                     deleteRow={true}
                     selectRow={selectRowProp}
-                    pagination
+                    // pagination
                     insertRow={true}
                     exportCSV={true}
                     columnFilter={true}
@@ -115,35 +124,47 @@ const FirstDashboard = () => {
 
                   {headers.map((item, i)=>{
                     if(i === 0) {
-                      return <TableHeaderColumn width="100" dataField={item} editable={ { type: 'number', options: { values: '1' }  } } dataSort={ true } isKey>
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'number', placeholder: ' ' } } dataSort={ true } isKey>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }else if(item === "icon") {
-                      return <TableHeaderColumn width="100" dataField={item}  dataFormat={(cell, format) => {
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'file', validator: jobNameValidator   } } dataFormat={(cell) => {
                         return <img src={cell} dataSort={ true }/>
                       } }>
+                          <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                      </TableHeaderColumn>
+                    }else if(item === 'name'){
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'string',placeholder: ' ',  validator: jobNameValidator  } }  dataSort={ true }>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }else if(item === 'live'){
-                      return <TableHeaderColumn width="100" dataField={item} dataSort={ true } dataAlign = 'center'    dataFormat={(cell, row) => {
-                        return <div className={cell ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</div>
+                      return <TableHeaderColumn width="100" dataField={item} editable={ { placeholder: ' ', validator: jobNameValidator } } dataSort={ true } dataAlign = 'center'    dataFormat={(cell, row) => {
+                        return <div className={cell===true ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell===true ? 'ON':'OFF'}</div>
                       }}>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }else if(item === 'locked'){
-                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'select', options: { values: locked } } }  dataSort={ true }>
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'select', options: { values: locked }, validator: jobNameValidator  } }  dataSort={ true }>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     } else if(item === 'color template'){
-                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'select', options: { values: colorTemplate } } }  dataSort={ true }>
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'select', options: { values: colorTemplate }, validator: jobNameValidator } }  dataSort={ true }>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
-                    }else if(item === 'coins balance' || item === 'time limit' || item === 'performance'){
+                    }else if(item === 'coins balance'){
                       return <TableHeaderColumn width="100" dataField={item} hidden={isHidden} editable={ { type: 'select', options: { values: locked } } }  dataSort={ true }>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
+                    }else if(item === 'time limit'){
+                      return <TableHeaderColumn width="100" dataField={item} hidden={isHidden} editable={ { type: 'select', options: { values: timeLimit } } }  dataSort={ true }>
+                        <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                      </TableHeaderColumn>
+                    }else if(item === 'performance'){
+                      return <TableHeaderColumn width="100" dataField={item} hidden={isHidden} editable={ { type: 'select', options: { values: performance } } }  dataSort={ true }>
+                        <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                      </TableHeaderColumn>
                     }else if(item){
-                      return <TableHeaderColumn width="100" dataField={item}  editable={ { type: 'select', options: { values: colorTemplate } } }  dataSort={ true }>
+                      return <TableHeaderColumn width="100" dataField={item}  editable={ {  placeholder: ' '  } }  dataSort={ true }>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }

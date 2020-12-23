@@ -95,12 +95,25 @@ const jsondata = [
         "icon": "http://icons.wxug.com/i/c/k/clear.gif",
         "name": "asdxcces",
         "locked": true,
-        "color template": ";pkl",
+        "color template": "asdkl",
         "coins balance": "No",
         "time limit": "18",
         "performance": "Time",
         "number of skins": "Female",
         "live": true,
+        "last update": 29
+    },
+    {
+        "id": "9",
+        "icon": "http://icons.wxug.com/i/c/k/clear.gif",
+        "name": "asdxcces",
+        "locked": true,
+        "color template": "kl",
+        "coins balance": "No",
+        "time limit": "18",
+        "performance": "Time",
+        "number of skins": "Female",
+        "live": false,
         "last update": 29
     }
 ]
