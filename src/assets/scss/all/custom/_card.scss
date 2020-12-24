@@ -1,8 +1,8 @@
 .card {
   margin-bottom: $card-bottom-margin;
 
-  display: flex;
-  flex-wrap: wrap;
+  //display: flex;
+  //flex-wrap: wrap;
   @extend %card-shadow;
   .card-subtitle {
     font-weight: $font-weight-light;

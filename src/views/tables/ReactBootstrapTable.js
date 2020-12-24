@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 // import {Row, Col, Card, CardBody} from 'reactstrap';
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
 import * as data from "../tables/DataBootstrapTable";
+
 import { cardsjsondata } from "../tables/DataCardsBootstrapTable";
+import * as pck from "../tables/DataGeneralDetail";
+
 import {upperCasePipe} from "../../components/helpers/upperCasePipe";
 
 import {
@@ -43,6 +46,8 @@ const cellEditProp = {
 
 const headers = ['id', 'icon', 'name', 'locked', 'color template','coins balance', 'time limit','performance', 'number of skins', 'live', 'last update'];
 const cards = ['id', 'order', 'name', 'image'];
+const headersPck = ['Version', 'File name', 'Updated at', 'Updated by', 'Env'];
+
 
 function jobNameValidator(value, row) {
   // If this function return an object, you got some ability to customize your error message
@@ -68,7 +73,7 @@ const FirstDashboard = () => {
 
   const createCustomExportCSVButton = () => {
     return (
-        <button style={ { color: 'white', backgroundColor: 'green',  width: '95px', height: '30px', marginRight: '10px' } } onClick={() => multiple()}>{isHidden ? 'Show more':'Hide'}</button>
+        <button style={ { color: 'white', backgroundColor: 'green',  width: '95px', height: '30px', marginRight: '10px', border: 0 } } onClick={() => multiple()}>{isHidden ? 'Show more':'Hide'}</button>
     );
 
   }
@@ -149,7 +154,7 @@ const FirstDashboard = () => {
   };
 
   return (
-      <div>
+      <>
         <Row>
           <Col md="12">
             <Card>
@@ -228,6 +233,7 @@ const FirstDashboard = () => {
           </Col>
         </Row>
 
+
         <Row>
           <Col className={'cards'}>
             {isCard && cardsjsondata.map((item,index) => {
@@ -246,7 +252,27 @@ const FirstDashboard = () => {
           </Col>
         </Row>
 
-      </div>
+
+
+        <Card>
+          <CardBody>
+            <BootstrapTable
+                data={pck.jsonpck}
+            >
+              {headersPck.map((item,i)=>{
+                if(i === 0) {
+                  return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } isKey>
+                    <span  style={{cursor:'pointer'}}>{item}</span>
+                  </TableHeaderColumn>
+                } else return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } >
+                <span  style={{cursor:'pointer'}}>{item}</span>
+              </TableHeaderColumn>
+              })}
+            </BootstrapTable>
+          </CardBody>
+        </Card>
+      </>
+
   );
 }
 

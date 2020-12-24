@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import * as data from "../tables/DataGeneralDetail";
+// import * as data from "../tables/DataGeneralDetail";
 import { Row, Col, Card, CardBody } from "reactstrap";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import {upperCasePipe} from "../../components/helpers/upperCasePipe";
@@ -73,7 +73,7 @@ const Datatables = () => {
     //   setAllData(arr)
     //   console.log(arr)
     // },[selectedFilter])
-    const [items, setItems] = useState(data.jsondata);
+    // const [items, setItems] = useState(data.jsondata);
 
     const options = {
         // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows
@@ -81,22 +81,22 @@ const Datatables = () => {
         // afterSearch: afterSearch, // define a after search hook
     };
 
-    const handleLiveClick = (id) => {
-        const object = items.find(i => {
-            return i.id === id
-        });
-        const index = items.findIndex(el => el.id === object.id);
-
-        const newObject = {...object, live: !object.live};
-
-        const newArr = [
-            ...items.slice(0, index),
-            newObject,
-            ...items.slice(index + 1),
-        ];
-
-        setItems(newArr);
-    }
+    // const handleLiveClick = (id) => {
+    //     const object = items.find(i => {
+    //         return i.id === id
+    //     });
+    //     const index = items.findIndex(el => el.id === object.id);
+    //
+    //     const newObject = {...object, live: !object.live};
+    //
+    //     const newArr = [
+    //         ...items.slice(0, index),
+    //         newObject,
+    //         ...items.slice(index + 1),
+    //     ];
+    //
+    //     setItems(newArr);
+    // }
 
 
     return (
@@ -110,7 +110,7 @@ const Datatables = () => {
                                 hover
                                 condensed
                                 // search={true}
-                                data={items}
+                                // data={items}
                                 // deleteRow={true}
                                 // selectRow={selectRowProp}
                                 // pagination
@@ -137,7 +137,7 @@ const Datatables = () => {
                                         </TableHeaderColumn>
                                     } else if(item === 'live'){
                                         return <TableHeaderColumn width="100" dataField={item} dataSort={ true } dataAlign = 'center'  editable={false} dataFormat={(cell, row) => {
-                                            return <div className={cell ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</div>
+                                            // return <div className={cell ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</div>
                                         }}>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
