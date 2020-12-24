@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Row, Col, Card, CardBody} from 'reactstrap';
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
 import * as data from "../tables/DataBootstrapTable";
+import * as pck from "../tables/DataGeneralDetail";
 import {upperCasePipe} from "../../components/helpers/upperCasePipe";
 
 
@@ -14,6 +15,7 @@ const cellEditProp = {
 };
 
 const headers = ['id', 'icon', 'name', 'locked', 'color template','coins balance', 'time limit','performance', 'number of skins', 'live', 'last update'];
+const headersPck = ['Version', 'File name', 'Updated at', 'Updated by', 'Env'];
 
 function jobNameValidator(value, row) {
   // If this function return an object, you got some ability to customize your error message
@@ -109,7 +111,7 @@ const FirstDashboard = () => {
   };
 
   return (
-      <div>
+      <>
         <Row>
           <Col md="12">
             <Card>
@@ -187,7 +189,28 @@ const FirstDashboard = () => {
             </Card>
           </Col>
         </Row>
-      </div>
+
+        <Card>
+          <CardBody>
+            <BootstrapTable
+                data={pck.jsonpck}
+            >
+              {headersPck.map((item,i)=>{
+                if(i === 0) {
+                  return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } isKey>
+                    <span  style={{cursor:'pointer'}}>{item}</span>
+                  </TableHeaderColumn>
+                } else return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } >
+                <span  style={{cursor:'pointer'}}>{item}</span>
+              </TableHeaderColumn>
+              })}
+            </BootstrapTable>
+          </CardBody>
+        </Card>
+
+
+
+      </>
   );
 }
 
