@@ -198,23 +198,24 @@ const FirstDashboard = () => {
           </Col>
         </Row>
 
-        {isCard && cardsjsondata.map((item,index) => {
+        <Row>
+          <Col className={'cards'}>
+            {isCard && cardsjsondata.map((item,index) => {
 
-            return <Row>
-              <Col xs="12" md="4">
-                <Card key={item.name} className='cards'>
-                  <CardImg top width="100%" src={item.icon}/>
-                  <CardBody>
-                    <CardTitle>{item.name}</CardTitle>
-                    <CardSubtitle>{item.id}</CardSubtitle>
-                    <CardText>{item.order}</CardText>
-                    <Button>Button</Button>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
+              return <Card key={item.name}>
+                <CardImg top width="100%" src={item.icon}/>
+                <CardBody className={"cardBody"}>
+                  <CardTitle>{item.name}</CardTitle>
+                  <CardSubtitle>{item.id}</CardSubtitle>
+                  <CardText>{item.order}</CardText>
+                  <Button>Button</Button>
+                </CardBody>
+              </Card>
 
-        })}
+            })}
+          </Col>
+        </Row>
+
       </div>
   );
 }
