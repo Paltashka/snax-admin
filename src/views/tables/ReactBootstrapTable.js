@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-// import {Row, Col, Card, CardBody} from 'reactstrap';
+import React, {useEffect, useState} from 'react';
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
 import * as data from "../tables/DataBootstrapTable";
 
@@ -46,7 +45,7 @@ const cellEditProp = {
 
 const headers = ['id', 'icon', 'name', 'locked', 'color template','coins balance', 'time limit','performance', 'number of skins', 'live', 'last update'];
 const cards = ['id', 'order', 'name', 'image'];
-const headersPck = ['Version', 'File name', 'Updated at', 'Updated by', 'Env'];
+const headersPck = ['Version', 'File name', 'Updated at', 'Updated by', 'Env', 'Comments'];
 
 
 function jobNameValidator(value, row) {
@@ -71,6 +70,8 @@ function jobNameValidator(value, row) {
 
 const FirstDashboard = () => {
 
+
+
   const createCustomExportCSVButton = () => {
     return (
         <button style={ { color: 'white', backgroundColor: 'green',  width: '95px', height: '30px', marginRight: '10px', border: 0 } } onClick={() => multiple()}>{isHidden ? 'Show more':'Hide'}</button>
@@ -87,12 +88,12 @@ const FirstDashboard = () => {
   const options = {
     exportCSVBtn: createCustomExportCSVButton,
     deleteBtn: createCustomExportDeleteButton,
-    // onRowClick: function(row) {
-    //   alert(`You click row id: ${row.id}`);
-    // },
-    // onRowDoubleClick: function(row) {
-    //   alert(`You double click row id: ${row.id}`);
-    // }
+    onRowClick: function(row) {
+      console.log(row.id)
+    },
+    onRowDoubleClick: function(row) {
+      alert(`You double click row id: ${row.id}`);
+    }
     // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows
     // afterDeleteRow: onAfterDeleteRow, // A hook for after droping rows.
     // afterSearch: afterSearch, // define a after search hook
@@ -117,22 +118,6 @@ const FirstDashboard = () => {
     changeHiddenCard();
   }
 
-  const handleLiveClick = (id) => {
-    const object = items.find(i => {
-      return i.id === id
-    });
-    const index = items.findIndex(el => el.id === object.id);
-
-    const newObject = {...object, live: !object.live};
-
-    const newArr = [
-      ...items.slice(0, index),
-      newObject,
-      ...items.slice(index + 1),
-    ];
-
-    setItems(newArr);
-  }
 
 
   const locked = [ '', 'Yes', 'No' ];
@@ -153,6 +138,8 @@ const FirstDashboard = () => {
     blurToSave: true
   };
 
+
+
   return (
       <>
         <Row>
@@ -170,30 +157,29 @@ const FirstDashboard = () => {
                     // pagination
                     insertRow={true}
                     exportCSV={true}
-                    columnFilter={true}
                     options={options}
-                    cellEdit={cellEditProp}
                     tableHeaderClass="mb-4"
                 >
 
                   {headers.map((item, i) => {
+
                     if(i === 0) {
                       return <TableHeaderColumn width="100" dataField={item} filter={ { type: 'TextFilter', delay: 1000, placeholder: ' ' } } editable={ { type: 'number', placeholder: ' ' } } dataSort={ true } isKey>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }else if(item === "icon") {
                       return <TableHeaderColumn width="100" dataField={item} filter={ { type: 'TextFilter', delay: 1000, placeholder: ' ' } } editable={ { type: 'file', validator: jobNameValidator   } } dataFormat={(cell) => {
-                        return <img src={cell} dataSort={ true }/>
+                        return <img style={{ width: 40, height: 40, borderRadius: '50%' }} src={cell} dataSort={ true }/>
                       } }>
                           <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }else if(item === 'name'){
-                      return <TableHeaderColumn width="100" dataField={item} filter={ { type: 'TextFilter', delay: 1000, placeholder: ' ' } } editable={ { type: 'string',placeholder: ' ',  validator: jobNameValidator  } }  dataSort={ true }>
+                      return <TableHeaderColumn width="100" dataField={item}  filter={ { type: 'TextFilter', delay: 1000, placeholder: ' ' } } editable={ { type: 'string',placeholder: ' ',  validator: jobNameValidator  } }  dataSort={ true }>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }else if(item === 'live'){
                       return <TableHeaderColumn width="100" dataField={item}  filter={ { type: 'TextFilter', delay: 1000, placeholder: ' ' } } editable={ { placeholder: ' ', validator: jobNameValidator } } dataSort={ true } dataAlign = 'center'    dataFormat={(cell, row) => {
-                        return <div className={cell===true ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell===true ? 'ON':'OFF'}</div>
+                        return <div className={cell===true ? 'btn-green' : 'btn-red'} >{cell===true ? 'ON':'OFF'}</div>
                       }}>
                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
@@ -258,13 +244,30 @@ const FirstDashboard = () => {
           <CardBody>
             <BootstrapTable
                 data={pck.jsonpck}
+                insertRow={true}
             >
               {headersPck.map((item,i)=>{
                 if(i === 0) {
-                  return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } isKey>
+                  return <TableHeaderColumn width="100" dataField={item} editable={ { type: 'number', placeholder: ' ', validator: jobNameValidator } } dataSort isKey>
                     <span  style={{cursor:'pointer'}}>{item}</span>
                   </TableHeaderColumn>
-                } else return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } >
+                }else if(item === 'Updated at') {
+                  return <TableHeaderColumn width="100" dataField={item} editable={ { type: 'datetime', placeholder: ' ', validator: jobNameValidator } } dataSort >
+                    <span  style={{cursor:'pointer'}}>{item}</span>
+                  </TableHeaderColumn>
+                }else if(item === 'Updated by') {
+                  return <TableHeaderColumn width="100" dataField={item} editable={ { type: 'string', placeholder: ' ', validator: jobNameValidator } } dataSort >
+                    <span  style={{cursor:'pointer'}}>{item}</span>
+                  </TableHeaderColumn>
+                }else if(item === 'Env') {
+                  return <TableHeaderColumn width="100" dataField={item} editable={ { type: 'select', options: { values: ['', 'Testing', 'Production'] }, validator: jobNameValidator } } dataSort >
+                    <span  style={{cursor:'pointer'}}>{item}</span>
+                  </TableHeaderColumn>
+                }else if(item === 'Comments') {
+                  return <TableHeaderColumn width="100" dataField={item} hidden editable={ { type: 'string', placeholder: ' ' } } dataSort >
+                    <span  style={{cursor:'pointer'}}>{item}</span>
+                  </TableHeaderColumn>
+                }else return <TableHeaderColumn width="100" dataField={item} editable={ { type: 'number', placeholder: ' ', validator: jobNameValidator } }  dataSort >
                 <span  style={{cursor:'pointer'}}>{item}</span>
               </TableHeaderColumn>
               })}

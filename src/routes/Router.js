@@ -452,12 +452,11 @@ var ThemeRoutes = [
   //     },
   //   ],
   // },
-  // {
-  //   path: "/form-validation",
-  //   name: "Form Validation",
-  //   icon: "mdi mdi-alert",
-  //   component: FormValidate,
-  // },
+  {
+    path: "/form-validation",
+    name: "Form ",
+    component: FormValidate,
+  },
   // {
   //   path: "/form-steps",
   //   name: "Form Steps",
