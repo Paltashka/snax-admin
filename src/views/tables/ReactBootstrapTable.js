@@ -11,8 +11,6 @@ import * as pck from "../tables/DataGeneralDetail";
 
 import {upperCasePipe} from "../../components/helpers/upperCasePipe";
 
-
-
 import {
   Card,
   CardImg,
@@ -72,11 +70,7 @@ function jobNameValidator(value, row) {
   return response;
 }
 
-
-
 const FirstDashboard = () => {
-
-
 
   const createCustomExportCSVButton = () => {
     return (
@@ -125,7 +119,6 @@ const FirstDashboard = () => {
   }
 
 
-
   const locked = [ '', 'Yes', 'No' ];
 
   const colorTemplate = [ '', 'Main color', 'Secondary color', 'Secondary color 2' ];
@@ -143,9 +136,6 @@ const FirstDashboard = () => {
     mode: 'dbclick',
     blurToSave: true
   };
-
-
-
 
 
   const [error, setError] = useState(null);
@@ -180,7 +170,6 @@ const FirstDashboard = () => {
             }
         )
   }, [])
-
 
 
 if(error) {
