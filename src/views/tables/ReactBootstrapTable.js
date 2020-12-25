@@ -212,13 +212,13 @@ if(error) {
                   {headers.map((item, i) => {
 
                     if (i === 0) {
-                      return <TableHeaderColumn width="100" dataField={item}
+                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{type: 'number', placeholder: ' '}} dataSort={true} isKey>
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     } else if (item === "icon_url") {
-                      return <TableHeaderColumn width="100" dataField={item}
+                      return <TableHeaderColumn width="100"  key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{type: 'file', validator: jobNameValidator}}
                                                 dataFormat={(cell) => {
@@ -228,7 +228,7 @@ if(error) {
 
                       </TableHeaderColumn>
                     } else if (item === 'name') {
-                      return <TableHeaderColumn width="100" dataField={item}
+                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
                         type: 'string',
                         placeholder: ' ',
@@ -237,7 +237,7 @@ if(error) {
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     } else if (item === 'live_build_id') {
-                      return <TableHeaderColumn width="100" dataField={item}
+                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' ', validator: jobNameValidator}}
                                                 dataSort={true} dataAlign='center'
@@ -245,7 +245,7 @@ if(error) {
                         <span style={{cursor: 'pointer'}}>Live</span>
                       </TableHeaderColumn>
                     } else if (item === 'is_locked_default') {
-                      return <TableHeaderColumn width="100" dataField={item}
+                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
                         type: 'select',
                         options: {values: locked},
@@ -254,7 +254,7 @@ if(error) {
                         <span style={{cursor: 'pointer'}}>Locked</span>
                       </TableHeaderColumn>
                     } else if (item === 'main_color_hex') {
-                      return <TableHeaderColumn width="100" dataField={item}
+                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
                         type: 'select',
                         options: {values: colorTemplate},
@@ -266,7 +266,7 @@ if(error) {
 
                       </TableHeaderColumn>
                     } else if (item === 'updated_at') {
-                      return <TableHeaderColumn width="100" dataField={item}
+                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
                         type: 'date',
                         options: {values: colorTemplate},
@@ -279,7 +279,7 @@ if(error) {
 
                       </TableHeaderColumn>
                     } else if (item) {
-                      return <TableHeaderColumn width="100" dataField={item}
+                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' '}} dataSort={true}>
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
@@ -324,25 +324,25 @@ if(error) {
 
               {headersPck.map((item,i)=> {
                 if (i === 0) {
-                  return <TableHeaderColumn width="100" dataField={item}
+                  return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                             editable={{type: 'number', placeholder: ' ', validator: jobNameValidator}}
                                             dataSort isKey>
                     <span style={{cursor: 'pointer'}}>{item}</span>
                   </TableHeaderColumn>
                 } else if (item === 'Updated at') {
-                  return <TableHeaderColumn width="100" dataField={item}
+                  return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                             editable={{type: 'datetime', placeholder: ' ', validator: jobNameValidator}}
                                             dataSort>
                     <span style={{cursor: 'pointer'}}>{item}</span>
                   </TableHeaderColumn>
                 } else if (item === 'Updated by') {
-                  return <TableHeaderColumn width="100" dataField={item}
+                  return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                             editable={{type: 'string', placeholder: ' ', validator: jobNameValidator}}
                                             dataSort>
                     <span style={{cursor: 'pointer'}}>{item}</span>
                   </TableHeaderColumn>
                 } else if (item === 'Env') {
-                  return <TableHeaderColumn width="100" dataField={item} editable={{
+                  return <TableHeaderColumn width="100" key={item+i} dataField={item} editable={{
                     type: 'select',
                     options: {values: ['', 'Testing', 'Production']},
                     validator: jobNameValidator
@@ -350,11 +350,11 @@ if(error) {
                     <span style={{cursor: 'pointer'}}>{item}</span>
                   </TableHeaderColumn>
                 } else if (item === 'Comments') {
-                  return <TableHeaderColumn width="100" dataField={item} hidden
+                  return <TableHeaderColumn width="100" key={item+i} dataField={item} hidden
                                             editable={{type: 'string', placeholder: ' '}} dataSort>
                     <span style={{cursor: 'pointer'}}>{item}</span>
                   </TableHeaderColumn>
-                } else return <TableHeaderColumn width="100" dataField={item} editable={{
+                } else return <TableHeaderColumn width="100" key={item+i} dataField={item} editable={{
                   type: 'number',
                   placeholder: ' ',
                   validator: jobNameValidator
