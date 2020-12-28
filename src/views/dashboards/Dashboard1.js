@@ -19,24 +19,24 @@ const cellEditProp = {
 };
 
 const headers = ['id', 'icon', 'name', 'locked', 'color template', 'number of skins', 'live', 'last update'];
-
-function jobNameValidator(value, row) {
-    // If this function return an object, you got some ability to customize your error message
-    const response = { isValid: true, notification: { type: 'success', msg: '', title: '' } };
-    if (!value) {
-        response.isValid = false;
-        response.notification.type = 'error';
-        response.notification.msg = 'Value must be inserted';
-        response.notification.title = 'Requested Value';
-    }
-    // else if (value.length < 10) {
-    //   response.isValid = false;
-    //   response.notification.type = 'error';
-    //   response.notification.msg = 'Value must have 10+ characters';
-    //   response.notification.title = 'Invalid Value';
-    // }
-    return response;
-}
+//
+// function jobNameValidator(value, row) {
+//     // If this function return an object, you got some ability to customize your error message
+//     const response = { isValid: true, notification: { type: 'success', msg: '', title: '' } };
+//     if (!value) {
+//         response.isValid = false;
+//         response.notification.type = 'error';
+//         response.notification.msg = 'Value must be inserted';
+//         response.notification.title = 'Requested Value';
+//     }
+//     // else if (value.length < 10) {
+//     //   response.isValid = false;
+//     //   response.notification.type = 'error';
+//     //   response.notification.msg = 'Value must have 10+ characters';
+//     //   response.notification.title = 'Invalid Value';
+//     // }
+//     return response;
+// }
 
 const FirstDashboard = () => {
 
@@ -84,28 +84,28 @@ const FirstDashboard = () => {
 
                                 {headers.map((item, i)=>{
                                     if(i === 0) {
-                                        return <TableHeaderColumn width="100" dataField={item}  dataSort={ true } isKey>
+                                        return <TableHeaderColumn width="100" key={item+i} dataField={item}  dataSort isKey>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
                                     }else if(item === "icon") {
-                                        return <TableHeaderColumn width="100" dataField={item}  dataFormat={(cell, format) => {
-                                            return <img src={cell} dataSort={ true }/>
+                                        return <TableHeaderColumn width="100" key={item+i} dataField={item}  dataFormat={(cell, format) => {
+                                            return <img src={cell} dataSort/>
                                         } }>
-                                            <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
+                                            <span  style={{cursor:'pointer'}}>{upperCasePipe(item+i)}</span>
                                         </TableHeaderColumn>
                                     }else if(item === 'live'){
-                                        return <TableHeaderColumn width="100" dataField={item} dataSort={ true } dataAlign = 'center'  editable={false} dataFormat={(cell, row) => {
+                                        return <TableHeaderColumn width="100" key={item+i} dataField={item} dataSort dataAlign = 'center'  editable={false} dataFormat={(cell, row) => {
                                             return <div className={cell ? 'btn-green' : 'btn-red'} onClick={() => handleLiveClick(row.id)}>{cell ? 'ON':'OFF'}</div>
                                         }}>
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
                                     }else  if(i > 0 ){
-                                        return <TableHeaderColumn width="100" dataField={item} dataSort={ true }  editable={{validator: jobNameValidator}}>
+                                        return <TableHeaderColumn width="100" key={item+i} dataField={item} dataSort  >
                                             <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                         </TableHeaderColumn>
                                     }
 
-                                    return <TableHeaderColumn width="100" dataField={item}  dataSort={ true }>
+                                    return <TableHeaderColumn width="100" key={item+i} dataField={item}  dataSort>
                                         <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
                                     </TableHeaderColumn>
                                 })}
