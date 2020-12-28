@@ -7,6 +7,7 @@ import maincontactReducer from "./contacts/Contacts";
 import emailReducer from "./email/";
 import maintodoReducer from "./todos/Todos";
 import todoReducer from "./todos/";
+import games from "../reducers/games";
 
 const Reducers = combineReducers({
   settings,
@@ -17,6 +18,7 @@ const Reducers = combineReducers({
   todoReducer,
   maintodoReducer,
   maincontactReducer,
+  games,
 });
 
 export default Reducers;

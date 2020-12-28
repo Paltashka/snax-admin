@@ -1,6 +1,7 @@
 
 import React, {useEffect, useState} from 'react';
 
+
 // import {Row, Col, Card, CardBody} from 'reactstrap';
 
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
@@ -38,6 +39,8 @@ import img3 from '../../assets/images/big/img3.jpg';
 import img4 from '../../assets/images/big/img4.jpg';
 import img5 from '../../assets/images/big/img5.jpg';
 import img6 from '../../assets/images/big/img6.jpg';
+import {getAllGames, getAllGamesThunk, getIsGamesFetching} from "../../reducers/games";
+import {useDispatch, useSelector} from "react-redux";
 
 const imgs = [img1, img2, img3, img4, img5, img6];
 
@@ -148,44 +151,20 @@ const FirstDashboard = () => {
 
 
 
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [it, setIt] = useState([]);
-
+  const dispatch = useDispatch();
+  const games = useSelector(getAllGames);
+  const isLoaded = useSelector(getIsGamesFetching);
+  console.log(isLoaded)
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch(`https://admin-snax-node.herokuapp.com/api/v1/games/`, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      }})
-        .then(res => res.json())
-        .then(
-            (result) => {
-              setIsLoaded(true);
-              setIt(result.payload);
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-              setIsLoaded(true);
-              setError(error);
-            }
-        )
+    dispatch(getAllGamesThunk());
   }, [])
 
 
 
-if(error) {
-  return <div>Error: {error.message}</div>
-} else if (!isLoaded) {
+ if (isLoaded) {
   return <div>Loading...</div>
 }else {
 
@@ -200,7 +179,7 @@ if(error) {
                     hover
                     condensed
                     search={true}
-                    data={it}
+                    data={games}
                     deleteRow={true}
                     selectRow={selectRowProp}
                     // pagination
