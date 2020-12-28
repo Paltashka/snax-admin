@@ -171,18 +171,18 @@ const FormValidate = () => {
                             </Button>
                         </FormGroup>
                         </Form> 
-                        <hr/>              
-                        <h4 className="mt-5">Check Data after form submit</h4> 
-                        <ListGroup>
-                            <ListGroupItem>Firstname: {Formvalue.firstname}</ListGroupItem>
-                            <ListGroupItem>Lirstname: {Formvalue.lastname}</ListGroupItem>
-                            <ListGroupItem>Username: {Formvalue.username}</ListGroupItem>
-                            <ListGroupItem>Age: {Formvalue.age}</ListGroupItem>
-                            <ListGroupItem>Email Id: {Formvalue.email}</ListGroupItem>
-                            <ListGroupItem>Mobile No: {Formvalue.mobile}</ListGroupItem>
-                            <ListGroupItem>Gender: {Formvalue.title}</ListGroupItem>
-                            <ListGroupItem>Are you developer?: {Formvalue.developer}</ListGroupItem>
-                        </ListGroup>
+                        {/*<hr/>              */}
+                        {/*<h4 className="mt-5">Check Data after form submit</h4> */}
+                        {/*<ListGroup>*/}
+                        {/*    <ListGroupItem>Firstname: {Formvalue.firstname}</ListGroupItem>*/}
+                        {/*    <ListGroupItem>Lirstname: {Formvalue.lastname}</ListGroupItem>*/}
+                        {/*    <ListGroupItem>Username: {Formvalue.username}</ListGroupItem>*/}
+                        {/*    <ListGroupItem>Age: {Formvalue.age}</ListGroupItem>*/}
+                        {/*    <ListGroupItem>Email Id: {Formvalue.email}</ListGroupItem>*/}
+                        {/*    <ListGroupItem>Mobile No: {Formvalue.mobile}</ListGroupItem>*/}
+                        {/*    <ListGroupItem>Gender: {Formvalue.title}</ListGroupItem>*/}
+                        {/*    <ListGroupItem>Are you developer?: {Formvalue.developer}</ListGroupItem>*/}
+                        {/*</ListGroup>*/}
                         </CardBody>
                     </Card>
                 </Col>
