@@ -41,6 +41,7 @@ import img5 from '../../assets/images/big/img5.jpg';
 import img6 from '../../assets/images/big/img6.jpg';
 import {getAllGames, getAllGamesThunk, getIsGamesFetching} from "../../reducers/games";
 import {useDispatch, useSelector} from "react-redux";
+import FormValidate from "../form-validation/FormValidation";
 
 const imgs = [img1, img2, img3, img4, img5, img6];
 
@@ -77,7 +78,7 @@ function jobNameValidator(value, row) {
 
 
 
-const FirstDashboard = () => {
+const AllGames = () => {
 
 
 
@@ -100,15 +101,12 @@ const FirstDashboard = () => {
     onRowClick: function(row) {
       console.log(row.id)
     },
-    onRowDoubleClick: function(row) {
-      alert(`You double click row id: ${row.id}`);
-    }
+
     // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows
     // afterDeleteRow: onAfterDeleteRow, // A hook for after droping rows.
     // afterSearch: afterSearch, // define a after search hook
   };
 
-  const [items, setItems] = useState(data.jsondata);
   const [isHidden, setHidden] = useState(true);
   const [isCard, setCard] = useState(false);
 
@@ -133,23 +131,6 @@ const FirstDashboard = () => {
 
   const colorTemplate = [ '', 'Main color', 'Secondary color', 'Secondary color 2' ];
 
-  const performance = ['', 'Time', 'Moves', 'Special'];
-
-  const timeLimit = (lim=90)=>{
-    let res = [''];
-    for (let i =0; i<=lim; i+=5){
-      res.push(i)
-    }
-    return res
-  }
-  const cellEditProp = {
-    mode: 'dbclick',
-    blurToSave: true
-  };
-
-
-
-
 
   const dispatch = useDispatch();
   const games = useSelector(getAllGames);
@@ -170,6 +151,7 @@ const FirstDashboard = () => {
 
   return (
       <>
+
         <Row>
           <Col md="12">
             <Card>
@@ -276,23 +258,7 @@ const FirstDashboard = () => {
         </Row>
 
 
-        <Row>
-          <Col className={'cards'}>
-            {isCard && cardsjsondata.map((item, index) => {
 
-              return <Card key={item.name}>
-                <CardImg top width="100%" src={item.icon}/>
-                <CardBody className={"cardBody"}>
-                  <CardTitle>{item.name}</CardTitle>
-                  <CardSubtitle>{item.id}</CardSubtitle>
-                  <CardText>{item.order}</CardText>
-                  <Button>Button</Button>
-                </CardBody>
-              </Card>
-
-            })}
-          </Col>
-        </Row>
 
         <Card>
           <CardBody>
@@ -345,10 +311,11 @@ const FirstDashboard = () => {
             </BootstrapTable>
           </CardBody>
         </Card>
+
       </>
 
   );
 }
 }
 
-export default FirstDashboard;
+export default AllGames;

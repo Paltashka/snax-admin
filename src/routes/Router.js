@@ -336,24 +336,23 @@ var ThemeRoutes = [
   //   name: "APPS",
   //   icon: "mdi mdi-dots-horizontal",
   // },
-  // {
-  //   path: "/chat",
-  //   name: "Chat",
-  //   icon: "mdi mdi-comment-multiple-outline",
-  //   component: Chat,
-  // },
+  {
+    path: "/chat",
+    name: "PCK",
+    component: Chat,
+  },
   // {
   //   path: "/email",
   //   name: "Email",
   //   icon: "mdi mdi-email",
   //   component: Email,
   // },
-  // {
-  //   path: "/contacts",
-  //   name: "Contacts",
-  //   icon: "mdi mdi-contacts",
-  //   component: Contacts,
-  // },
+  {
+    path: "/contacts",
+    name: "Games",
+    icon: "mdi mdi-contacts",
+    component: Contacts,
+  },
   // {
   //   path: "/calendar",
   //   name: "Calendar",
@@ -454,7 +453,7 @@ var ThemeRoutes = [
   // },
   {
     path: "/form-validation",
-    name: "Form ",
+    name: "Form",
     component: FormValidate,
   },
   // {
@@ -476,8 +475,7 @@ var ThemeRoutes = [
   // },
   {
     path: "/tables/datatable",
-    name: "GAMES",
-    icon: "mdi mdi-border-inside",
+    name: "AllGames",
     component: Datatable,
   },
   // {

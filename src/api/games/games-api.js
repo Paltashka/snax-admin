@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://18.216.83.82:3000/api/v1/'
+    baseURL: 'https://admin-snax-node.herokuapp.com/api/v1/'
 });
 
 export const Games = {

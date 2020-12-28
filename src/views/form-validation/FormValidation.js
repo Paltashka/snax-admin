@@ -13,7 +13,7 @@ import {
 import { useForm } from 'react-hook-form';
 import Form from 'react-validation/build/form';
 
-const FormValidate = () => {
+const GeneralDetails = () => {
     const { register, handleSubmit, errors } = useForm(); // initialise the hook
     const [Formvalue, setFormvalue] = useState({id: "", icon:"", email:"", age:"", title:"", mobile:"", developer:""});
     const onSubmit = (data) => {
@@ -190,4 +190,4 @@ const FormValidate = () => {
         );
     }
 
-export default FormValidate;
+export default GeneralDetails;
