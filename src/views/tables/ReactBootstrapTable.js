@@ -156,7 +156,7 @@ const FirstDashboard = () => {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch(`http://18.216.83.82:3000/api/v1/games/`, {
+    fetch(`https://admin-snax-node.herokuapp.com/api/v1/games/`, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
