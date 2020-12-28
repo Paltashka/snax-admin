@@ -35,6 +35,7 @@ useEffect(() => {
 
           <button onClick={() => {
             setPCK(true)
+            setGames(false)
             setGeneral(false)
           }}>PCK</button>
          <button onClick={() => {

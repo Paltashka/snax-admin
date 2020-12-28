@@ -18,8 +18,8 @@ const GeneralDetails = ( props ) => {
     const onSubmit = (data) => {
         setFormvalue(data);
     };
-
-    console.log(props.isRow)
+    const [previewImage, setPreviewImage] = useState(props.isRow.icon_url);
+    const [image, setImage] = useState(null)
 
 
         return (
@@ -41,7 +41,6 @@ const GeneralDetails = ( props ) => {
                                    type="number"
                                     name="id"
                                     className="form-control"
-                                   // defaultValue={props.id}
                                    value={props.isRow.id}
                                 />
                             </div>
@@ -52,12 +51,18 @@ const GeneralDetails = ( props ) => {
                             </label>
                             <div className="mb-2">
                                 <input
-                                    
-                                    type="file"
+                                    style={ {width: 200, height: 200} }
+                                    type="image"
                                     name="icon"
+                                    src={previewImage}
                                     ref={register({ required: true })}
                                     className="form-control"
                                 />
+                                <input type="file" onChange={(e)=>{
+                                    setPreviewImage(URL.createObjectURL(e.target.files[0]))
+                                    setImage(e.target.files[0])
+
+                                }}/>
                             </div>
                             <span className="text-danger">{errors.icon && 'Icon is required.'}</span>
                         </FormGroup>
@@ -67,7 +72,6 @@ const GeneralDetails = ( props ) => {
                             </label>
                             <div className="mb-2">
                                 <input
-                                    
                                     type="text"
                                     name="name"
                                     ref={register({ required: true })}
@@ -100,7 +104,7 @@ const GeneralDetails = ( props ) => {
                                     name="color"
                                     ref={register({ required: true})}
                                     className="form-control"
-                                    value={props.isRow.color_id='1' ? props.isRow.main_color_hex : props.isRow.second_color_hex}
+                                    value={props.isRow.main_color_hex}
                                 />
                             </div>
                             <span className="text-danger">{errors.color && 'Color template is required.'}</span>
@@ -110,7 +114,7 @@ const GeneralDetails = ( props ) => {
                                     Coins balance
                                 </label>
                                 <div className="mb-2">
-                                    <select name="balance" className="form-control" >
+                                    <select name="balance" className="form-control" defaultValue={props.isRow.show_balance=true ? "Yes" : "NO"}>
                                         <option value="">Select Option</option>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
@@ -122,7 +126,7 @@ const GeneralDetails = ( props ) => {
                                     Time limit
                                 </label>
                                 <div className="mb-2">
-                                    <select name="limit" className="form-control" >
+                                    <select name="limit" className="form-control" disabled={props.isRow.show_timer}>
                                         <option value="">Select Option</option>
                                         <option value="0">0</option>
                                         <option value="5">5</option>
