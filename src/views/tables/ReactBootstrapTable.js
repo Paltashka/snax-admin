@@ -2,13 +2,11 @@
 import React, {useEffect, useState} from 'react';
 
 
-// import {Row, Col, Card, CardBody} from 'reactstrap';
+
 
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
-import * as data from "../tables/DataBootstrapTable";
 
-import { cardsjsondata } from "../tables/DataCardsBootstrapTable";
-import * as pck from "../tables/DataGeneralDetail";
+
 
 import {upperCasePipe} from "../../components/helpers/upperCasePipe";
 
@@ -16,19 +14,7 @@ import {upperCasePipe} from "../../components/helpers/upperCasePipe";
 
 import {
   Card,
-  CardImg,
-  CardImgOverlay,
-  CardText,
   CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardColumns,
-  CardGroup,
-  CardDeck,
-  CardLink,
-  CardHeader,
-  CardFooter,
-  Button,
   Row,
   Col
 } from 'reactstrap';
@@ -41,25 +27,21 @@ import img5 from '../../assets/images/big/img5.jpg';
 import img6 from '../../assets/images/big/img6.jpg';
 import {getAllGames, getAllGamesThunk, getIsGamesFetching} from "../../reducers/games";
 import {useDispatch, useSelector} from "react-redux";
-import FormValidate from "../form-validation/FormValidation";
+
 
 const imgs = [img1, img2, img3, img4, img5, img6];
 
 const selectRowProp = {
   mode: "checkbox",
 };
-const cellEditProp = {
-  mode: "click",
-  blurToSave: true,
-};
+
 
 const headers = ['id', 'icon_url', 'name', 'is_locked_default', 'main_color_hex', 'number of skins', 'live_build_id', 'updated_at'];
-const cards = ['id', 'order', 'name', 'image'];
-const headersPck = ['Version', 'File name', 'Updated at', 'Updated by', 'Env', 'Comments'];
+
 
 
 function jobNameValidator(value, row) {
-  // If this function return an object, you got some ability to customize your error message
+
   const response = { isValid: true, notification: { type: 'success', msg: '', title: '' } };
   if (!value) {
     response.isValid = false;
@@ -78,7 +60,7 @@ function jobNameValidator(value, row) {
 
 
 
-const AllGames = () => {
+const AllGames = (props) => {
 
 
 
@@ -99,7 +81,9 @@ const AllGames = () => {
     exportCSVBtn: createCustomExportCSVButton,
     deleteBtn: createCustomExportDeleteButton,
     onRowClick: function(row) {
-      console.log(row.id)
+      props.setSelected(true)
+      props.setRow(row)
+      console.log(row)
     },
 
     // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows
@@ -132,16 +116,12 @@ const AllGames = () => {
   const colorTemplate = [ '', 'Main color', 'Secondary color', 'Secondary color 2' ];
 
 
-  const dispatch = useDispatch();
+
   const games = useSelector(getAllGames);
   const isLoaded = useSelector(getIsGamesFetching);
-  console.log(isLoaded)
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
-  useEffect(() => {
-    dispatch(getAllGamesThunk());
-  }, [])
 
 
 
@@ -256,61 +236,6 @@ const AllGames = () => {
             </Card>
           </Col>
         </Row>
-
-
-
-
-        <Card>
-          <CardBody>
-            <BootstrapTable
-                data={pck.jsonpck}
-                insertRow={true}
-            >
-
-              {headersPck.map((item,i)=> {
-                if (i === 0) {
-                  return <TableHeaderColumn width="100" key={item+i} dataField={item}
-                                            editable={{type: 'number', placeholder: ' ', validator: jobNameValidator}}
-                                            dataSort isKey>
-                    <span style={{cursor: 'pointer'}}>{item}</span>
-                  </TableHeaderColumn>
-                } else if (item === 'Updated at') {
-                  return <TableHeaderColumn width="100" key={item+i} dataField={item}
-                                            editable={{type: 'datetime', placeholder: ' ', validator: jobNameValidator}}
-                                            dataSort>
-                    <span style={{cursor: 'pointer'}}>{item}</span>
-                  </TableHeaderColumn>
-                } else if (item === 'Updated by') {
-                  return <TableHeaderColumn width="100" key={item+i} dataField={item}
-                                            editable={{type: 'string', placeholder: ' ', validator: jobNameValidator}}
-                                            dataSort>
-                    <span style={{cursor: 'pointer'}}>{item}</span>
-                  </TableHeaderColumn>
-                } else if (item === 'Env') {
-                  return <TableHeaderColumn width="100" key={item+i} dataField={item} editable={{
-                    type: 'select',
-                    options: {values: ['', 'Testing', 'Production']},
-                    validator: jobNameValidator
-                  }} dataSort>
-                    <span style={{cursor: 'pointer'}}>{item}</span>
-                  </TableHeaderColumn>
-                } else if (item === 'Comments') {
-                  return <TableHeaderColumn width="100" key={item+i} dataField={item} hidden
-                                            editable={{type: 'string', placeholder: ' '}} dataSort>
-                    <span style={{cursor: 'pointer'}}>{item}</span>
-                  </TableHeaderColumn>
-                } else return <TableHeaderColumn width="100" key={item+i} dataField={item} editable={{
-                  type: 'number',
-                  placeholder: ' ',
-                  validator: jobNameValidator
-                }} dataSort>
-                  <span style={{cursor: 'pointer'}}>{item}</span>
-                </TableHeaderColumn>
-              })
-              }
-            </BootstrapTable>
-          </CardBody>
-        </Card>
 
       </>
 

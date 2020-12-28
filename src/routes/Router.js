@@ -336,11 +336,11 @@ var ThemeRoutes = [
   //   name: "APPS",
   //   icon: "mdi mdi-dots-horizontal",
   // },
-  {
-    path: "/chat",
-    name: "PCK",
-    component: Chat,
-  },
+  // {
+  //   path: "/chat",
+  //   name: "PCK",
+  //   component: Chat,
+  // },
   // {
   //   path: "/email",
   //   name: "Email",
@@ -451,11 +451,11 @@ var ThemeRoutes = [
   //     },
   //   ],
   // },
-  {
-    path: "/form-validation",
-    name: "Form",
-    component: FormValidate,
-  },
+  // {
+  //   path: "/form-validation",
+  //   name: "Form",
+  //   component: FormValidate,
+  // },
   // {
   //   path: "/form-steps",
   //   name: "Form Steps",
@@ -473,11 +473,11 @@ var ThemeRoutes = [
   //   icon: "mdi mdi-border-all",
   //   component: Basictable,
   // },
-  {
-    path: "/tables/datatable",
-    name: "AllGames",
-    component: Datatable,
-  },
+  // {
+  //   path: "/tables/datatable",
+  //   name: "AllGames",
+  //   component: Datatable,
+  // },
   // {
   //   path: "/tables/reacttable",
   //   name: "PLAYERS",

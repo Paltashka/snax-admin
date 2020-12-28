@@ -6,19 +6,22 @@ import {
     FormGroup,
     Card,
     CardBody,
-    Label,
-    ListGroup, ListGroupItem,
     CardTitle
 } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import Form from 'react-validation/build/form';
 
-const GeneralDetails = () => {
+
+const GeneralDetails = ( props ) => {
     const { register, handleSubmit, errors } = useForm(); // initialise the hook
     const [Formvalue, setFormvalue] = useState({id: "", icon:"", email:"", age:"", title:"", mobile:"", developer:""});
     const onSubmit = (data) => {
         setFormvalue(data);
     };
+
+    console.log(props.isRow)
+
+
         return (
             <Row>
                 <Col sm="12">
@@ -38,6 +41,8 @@ const GeneralDetails = () => {
                                    type="number"
                                     name="id"
                                     className="form-control"
+                                   // defaultValue={props.id}
+                                   value={props.isRow.id}
                                 />
                             </div>
                         </FormGroup>
@@ -67,6 +72,7 @@ const GeneralDetails = () => {
                                     name="name"
                                     ref={register({ required: true })}
                                     className="form-control"
+                                    value={props.isRow.name}
                                 />
                             </div>
                             <span className="text-danger">{errors.name && 'Name is required.'}</span>
@@ -76,7 +82,7 @@ const GeneralDetails = () => {
                                 Locked
                             </label>
                             <div className="mb-2">
-                                <select name="locked" className="form-control" ref={register({ required: true })}>
+                                <select name="locked" className="form-control" ref={register({ required: true })} defaultValue={props.isRow.is_locked_default=true ? "Yes" : "NO"}>
                                     <option value="">Select Option</option>
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
@@ -94,7 +100,7 @@ const GeneralDetails = () => {
                                     name="color"
                                     ref={register({ required: true})}
                                     className="form-control"
-                                    defaultValue="#5a6af5"
+                                    value={props.isRow.color_id='1' ? props.isRow.main_color_hex : props.isRow.second_color_hex}
                                 />
                             </div>
                             <span className="text-danger">{errors.color && 'Color template is required.'}</span>

@@ -30,7 +30,6 @@ export const getAllGamesThunk = () => async (dispatch) => {
     try{
         dispatch(setIsGamesFetching(true));
         const response = await Games.getAllGames();
-        console.log('response', response);
         dispatch(getAllGamesAction(response.data.payload));
         dispatch(setIsGamesFetching(false));
     }catch(e) {console.log(e)}
