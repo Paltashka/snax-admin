@@ -51,7 +51,7 @@ function jobNameValidator(value, row) {
   return response;
 }
 
-
+const qualityType = [ '0', '1', '2', '3']
 
 const AllGames = (props) => {
 
@@ -135,11 +135,9 @@ const AllGames = (props) => {
                     condensed
                     search={true}
                     data={games}
-                    deleteRow={true}
                     selectRow={selectRowProp}
                     // pagination
                     insertRow={true}
-                    exportCSV={true}
                     options={options}
                     tableHeaderClass="mb-4"
                 >
@@ -147,12 +145,12 @@ const AllGames = (props) => {
 
                     if (i === 0) {
                       return <TableHeaderColumn width="100" key={item+i} dataField={item}
-                                                filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                filter={ { type: 'SelectFilter', options: qualityType } }
                                                 editable={{type: 'number', placeholder: ' '}} dataSort={true} isKey>
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     } else if (item === "icon_url") {
-                      return <TableHeaderColumn width="100"  key={item+i} dataField={item}
+                      return <TableHeaderColumn width="100" dataAlign="center"  key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{type: 'file', validator: jobNameValidator}}
                                                 dataFormat={(cell) => {
@@ -162,7 +160,7 @@ const AllGames = (props) => {
 
                       </TableHeaderColumn>
                     } else if (item === 'name') {
-                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
+                      return <TableHeaderColumn width="100" dataAlign="center" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
                         type: 'string',
                         placeholder: ' ',
@@ -171,7 +169,7 @@ const AllGames = (props) => {
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     } else if (item === 'live_build_id') {
-                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
+                      return <TableHeaderColumn width="100" dataAlign="center" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' ', validator: jobNameValidator}}
                                                 dataSort={true} dataAlign='center'
@@ -179,7 +177,7 @@ const AllGames = (props) => {
                         <span style={{cursor: 'pointer'}}>Live</span>
                       </TableHeaderColumn>
                     } else if (item === 'is_locked_default') {
-                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
+                      return <TableHeaderColumn width="100" dataAlign="center" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
                         type: 'select',
                         options: {values: locked},
@@ -188,7 +186,7 @@ const AllGames = (props) => {
                         <span style={{cursor: 'pointer'}}>Locked</span>
                       </TableHeaderColumn>
                     } else if (item === 'main_color_hex') {
-                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
+                      return <TableHeaderColumn width="100" dataAlign="center" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
                         type: 'select',
                         options: {values: colorTemplate},
@@ -200,7 +198,7 @@ const AllGames = (props) => {
 
                       </TableHeaderColumn>
                     } else if (item === 'updated_at') {
-                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
+                      return <TableHeaderColumn width="100" dataAlign="center" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
                         type: 'date',
                         options: {values: colorTemplate},
@@ -212,23 +210,19 @@ const AllGames = (props) => {
                         <span style={{cursor: 'pointer'}}>Last update</span>
 
                       </TableHeaderColumn>
-                    } else if (item === 'Actions') {
-                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
-                                                filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
-                        type: 'date',
-                        options: {values: colorTemplate},
-                      }} dataSort={true} dataFormat={(cell) => {
-                        let date = Date.parse(cell)
-                        return <span>{new Date(date).toDateString()}</span>
-                      }}>
-                        <span style={{cursor: 'pointer'}}>Last update</span>
-
-                      </TableHeaderColumn>
-                    }else if (item) {
-                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
+                    } else if (item === 'number of skins') {
+                      return <TableHeaderColumn width="100" dataAlign="center" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' '}} dataSort={true}>
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
+                      </TableHeaderColumn>
+                    }else if ( item) {
+                      return <TableHeaderColumn width="100" dataAlign="center"  key={item+i} editable={{
+                      }}  dataFormat={(cell) => {
+                        return <button className="btn-del" onClick={(row)=>console.log(row)}>Delete</button>
+                      }}>
+                        <span style={{cursor: 'pointer'}}>{item}</span>
+
                       </TableHeaderColumn>
                     }
                     })

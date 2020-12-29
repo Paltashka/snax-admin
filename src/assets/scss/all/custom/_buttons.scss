@@ -42,6 +42,7 @@
     font-size: 18px;
     line-height: 23px;
   }
+
   &.btn-xl {
     width: 70px;
     height: 70px;
@@ -133,4 +134,44 @@
   color: white;
   width: 43px;
   margin-left: 24%;
+}
+.btn-del{
+  background: red;
+  color: white;
+  border: 0;
+  box-shadow: 3px 3px 4px silver;
+  border-radius: 10%;
+}
+.btn-nav{
+  position: relative;
+  background-color: #3A92FC;
+  border: none;
+  color: white;
+  padding: 7px;
+  border-radius: 10%;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.btn-nav:after {
+  content: "";
+  background: blue;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.2s
+}
+
+.btn-nav:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
 }
