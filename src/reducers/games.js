@@ -1,4 +1,4 @@
-import {GET_GAMES, IS_GAMES_FETCHING} from "./constants";
+import {GET_ALL_ID, GET_GAMES, IS_GAMES_FETCHING} from "./constants";
 import {Games} from "../api/games/games-api";
 
 const initialState = {
@@ -25,6 +25,7 @@ export default function reducer(state = initialState, {type, payload}) {
 
 const getAllGamesAction = (games) => ({type: GET_GAMES, payload: {games}});
 const setIsGamesFetching = (isFetching) => ({type: IS_GAMES_FETCHING, payload: {isFetching}});
+
 
 export const getAllGamesThunk = () => async (dispatch) => {
     try{
