@@ -25,20 +25,20 @@ useEffect(() => {
     <>
       {
        isSelected && <div>
-          <button onClick={() => {
+          <button className="btn-nav" onClick={() => {
             setGeneral(true)
             setGames(false)
             setPCK(false)
           }}>General details</button>
 
-          <button>Skins</button>
+          <button className="btn-nav">Skins</button>
 
-          <button onClick={() => {
+          <button className="btn-nav" onClick={() => {
             setPCK(true)
             setGames(false)
             setGeneral(false)
           }}>PCK</button>
-         <button onClick={() => {
+         <button className="btn-nav" onClick={() => {
            setGeneral(false)
            setGames(true)
            setPCK(false)
