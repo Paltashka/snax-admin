@@ -39,32 +39,58 @@ export default () => {
                         setIsSkins(true);
                     }}>Skins</button>
 
-                    <button onClick={() => {
-                        setPCK(true)
-                        setGames(false);
-                        setIsSkins(false);
-                        setGeneral(false)
-                    }}>PCK
-                    </button>
-                    <button onClick={() => {
-                        setGeneral(false)
-                        setGames(true)
-                        setPCK(false)
-                        setIsSkins(false);
-                    }}>Games
-                    </button>
-                </div>
-            }
-            {
-                isGames && <AllGames setRow={setRow} setSelected={setSelected}/>
-            }
-            {
-                isGeneral && <GeneralDetails isRow={isRow}/>
-            }
-            {isSkins && <Skins />}
-            {
-                isPCK && <PCK/>
-            }
-        </>
-    );
+
+    {/*                <button onClick={() => {*/}
+    {/*                    setPCK(true)*/}
+    {/*                    setGames(false);*/}
+    {/*                    setIsSkins(false);*/}
+    {/*                    setGeneral(false)*/}
+    {/*                }}>PCK*/}
+    {/*                </button>*/}
+    {/*                <button onClick={() => {*/}
+    {/*                    setGeneral(false)*/}
+    {/*                    setGames(true)*/}
+    {/*                    setPCK(false)*/}
+    {/*                    setIsSkins(false);*/}
+    {/*                }}>Games*/}
+    {/*                </button>*/}
+    {/*            </div>*/}
+    {/*        }*/}
+    {/*        {*/}
+    {/*            isGames && <AllGames setRow={setRow} setSelected={setSelected}/>*/}
+    {/*        }*/}
+    {/*        {*/}
+    {/*            isGeneral && <GeneralDetails isRow={isRow}/>*/}
+    {/*        }*/}
+    {/*        {isSkins && <Skins />}*/}
+    {/*        {*/}
+    {/*            isPCK && <PCK/>*/}
+    {/*        }*/}
+    {/*    </>*/}
+    {/*);*/}
+
+          <button onClick={() => {
+            setPCK(true)
+            setGames(false)
+            setGeneral(false)
+          }}>PCK</button>
+         <button onClick={() => {
+           setGeneral(false)
+           setGames(true)
+           setPCK(false)
+         }}>Games</button>
+        </div>
+      }
+      {
+        isGames &&  <AllGames setRow={setRow} setSelected={setSelected} />
+      }
+      {
+        isGeneral && <GeneralDetails isRow={isRow} />
+      }
+      {
+        isPCK && <PCK/>
+      }
+    </>
+  );
+
 };

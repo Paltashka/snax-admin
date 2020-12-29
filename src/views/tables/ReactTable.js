@@ -205,44 +205,44 @@ const Reacttable = () => {
       {/*--------------------------------------------------------------------------------*/}
       {/* Start Action table*/}
       {/*--------------------------------------------------------------------------------*/}
-      {/*<Card>*/}
-      {/*  <CardTitle className="mb-0 p-3 border-bottom bg-light">*/}
-      {/*    <i className="mdi mdi-border-right mr-2"></i>Action Table*/}
-      {/*  </CardTitle>*/}
-      {/*  <CardBody>*/}
-      {/*    <ReactTable*/}
-      {/*      columns={[*/}
-      {/*        {*/}
-      {/*          Header: "FirstName",*/}
-      {/*          accessor: "name",*/}
-      {/*        },*/}
-      {/*        {*/}
-      {/*          Header: "Designation",*/}
-      {/*          accessor: "designation",*/}
-      {/*        },*/}
-      {/*        {*/}
-      {/*          Header: "Location",*/}
-      {/*          accessor: "location",*/}
-      {/*        },*/}
-      {/*        {*/}
-      {/*          Header: "Age",*/}
-      {/*          accessor: "age",*/}
-      {/*        },*/}
-      {/*        {*/}
-      {/*          Header: "Actions",*/}
-      {/*          accessor: "actions",*/}
-      {/*          sortable: false,*/}
-      {/*          filterable: false,*/}
-      {/*        },*/}
-      {/*      ]}*/}
-      {/*      defaultPageSize={10}*/}
-      {/*      showPaginationBottom={true}*/}
-      {/*      className="-striped -highlight"*/}
-      {/*      data={data2}*/}
-      {/*      filterable*/}
-      {/*    />*/}
-      {/*  </CardBody>*/}
-      {/*</Card>*/}
+      <Card>
+        <CardTitle className="mb-0 p-3 border-bottom bg-light">
+          <i className="mdi mdi-border-right mr-2"></i>Action Table
+        </CardTitle>
+        <CardBody>
+          <ReactTable
+            columns={[
+              {
+                Header: "FirstName",
+                accessor: "name",
+              },
+              {
+                Header: "Designation",
+                accessor: "designation",
+              },
+              {
+                Header: "Location",
+                accessor: "location",
+              },
+              {
+                Header: "Age",
+                accessor: "age",
+              },
+              {
+                Header: "Actions",
+                accessor: "actions",
+                sortable: false,
+                filterable: false,
+              },
+            ]}
+            defaultPageSize={10}
+            showPaginationBottom={true}
+            className="-striped -highlight"
+            data={data2}
+            filterable
+          />
+        </CardBody>
+      </Card>
       {/*/!*--------------------------------------------------------------------------------*!/*/}
       {/*/!* End Action table*!/*/}
       {/*/!*--------------------------------------------------------------------------------*!/*/}
