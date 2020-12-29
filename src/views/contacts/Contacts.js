@@ -24,7 +24,7 @@ export default () => {
         <>
             {
                 isSelected && <div>
-                    <button onClick={() => {
+                    <button className={'btn-nav'} onClick={() => {
                         setGeneral(true)
                         setGames(false)
                         setPCK(false)
@@ -32,7 +32,7 @@ export default () => {
                     }}>General details
                     </button>
 
-                    <button onClick={() => {
+                    <button className={'btn-nav'} onClick={() => {
                         setGeneral(false)
                         setGames(false)
                         setPCK(false)
@@ -40,14 +40,14 @@ export default () => {
                     }}>Skins</button>
 
 
-                    <button onClick={() => {
+                    <button className={'btn-nav'} onClick={() => {
                         setPCK(true)
                         setGames(false);
                         setIsSkins(false);
                         setGeneral(false)
                     }}>PCK
                     </button>
-                    <button onClick={() => {
+                    <button className={'btn-nav'} onClick={() => {
                         setGeneral(false)
                         setGames(true)
                         setPCK(false)
