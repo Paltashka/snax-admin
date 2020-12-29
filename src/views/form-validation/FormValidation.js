@@ -86,7 +86,7 @@ const GeneralDetails = ( props ) => {
                                 Locked
                             </label>
                             <div className="mb-2">
-                                <select name="locked" className="form-control" ref={register({ required: true })} defaultValue={props.isRow.is_locked_default=true ? "Yes" : "NO"}>
+                                <select name="locked" className="form-control" ref={register({ required: true })} defaultValue={props.isRow.is_locked_default=true ? "True" : "False"}>
                                     <option value="">Select Option</option>
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>

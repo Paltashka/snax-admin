@@ -1,17 +1,7 @@
 
 import React, {useEffect, useState} from 'react';
-
-
-
-
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
-
-
-
 import {upperCasePipe} from "../../components/helpers/upperCasePipe";
-
-
-
 import {
   Card,
   CardBody,
@@ -32,11 +22,14 @@ import {useDispatch, useSelector} from "react-redux";
 const imgs = [img1, img2, img3, img4, img5, img6];
 
 const selectRowProp = {
-  mode: "checkbox",
+  mode: 'checkbox',
+  clickToSelect: true,
+  hideSelectColumn: true,
+  bgColor: '#bce5fc'
 };
 
 
-const headers = ['id', 'icon_url', 'name', 'is_locked_default', 'main_color_hex', 'number of skins', 'live_build_id', 'updated_at'];
+const headers = ['id', 'icon_url', 'name', 'is_locked_default', 'main_color_hex', 'number of skins', 'live_build_id', 'updated_at', 'Actions'];
 
 
 
@@ -201,7 +194,7 @@ const AllGames = (props) => {
                         options: {values: colorTemplate},
                         validator: jobNameValidator
                       }} dataSort={true} dataFormat={(cell) => {
-                        return <input type={'color'} value={cell} className={'color_api'}/>
+                        return <input disabled={true} type={'color'} value={cell} className={'color_api'}/>
                       }}>
                         <span style={{cursor: 'pointer'}}>Color template</span>
 
@@ -219,16 +212,25 @@ const AllGames = (props) => {
                         <span style={{cursor: 'pointer'}}>Last update</span>
 
                       </TableHeaderColumn>
-                    } else if (item) {
+                    } else if (item === 'Actions') {
+                      return <TableHeaderColumn width="100" key={item+i} dataField={item}
+                                                filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}} editable={{
+                        type: 'date',
+                        options: {values: colorTemplate},
+                      }} dataSort={true} dataFormat={(cell) => {
+                        let date = Date.parse(cell)
+                        return <span>{new Date(date).toDateString()}</span>
+                      }}>
+                        <span style={{cursor: 'pointer'}}>Last update</span>
+
+                      </TableHeaderColumn>
+                    }else if (item) {
                       return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                                 filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' '}} dataSort={true}>
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     }
-                    // else return <TableHeaderColumn width="100" dataField={item}   dataSort={ true }>
-                    //   <span  style={{cursor:'pointer'}}>{upperCasePipe(item)}</span>
-                    // </TableHeaderColumn>
                     })
                   }
                 </BootstrapTable>
