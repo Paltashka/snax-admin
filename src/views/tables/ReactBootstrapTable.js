@@ -161,7 +161,7 @@ const AllGames = (props) => {
                 >
                   {headers.map((item, i) => {
                     if (i === 0) {
-                      return <TableHeaderColumn width="100"
+                      return <TableHeaderColumn width="70"
                                                 key={item+i}
                                                 dataField={item}
                                                 filterFormatted
@@ -172,7 +172,7 @@ const AllGames = (props) => {
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
                     } else if (item === "icon_url") {
-                      return <TableHeaderColumn width="100"
+                      return <TableHeaderColumn width="90"
                                                 dataAlign="center"
                                                 key={item+i}
                                                 dataField={item}
@@ -184,7 +184,7 @@ const AllGames = (props) => {
 
                       </TableHeaderColumn>
                     } else if (item === 'name') {
-                      return <TableHeaderColumn width="100"
+                      return <TableHeaderColumn width="130"
                                                 dataAlign="center"
                                                 key={item+i}
                                                 dataField={item}
@@ -227,7 +227,7 @@ const AllGames = (props) => {
                         <span style={{cursor: 'pointer'}}>Locked</span>
                       </TableHeaderColumn>
                     } else if (item === 'main_color_hex') {
-                      return <TableHeaderColumn width="100"
+                      return <TableHeaderColumn width="110"
                                                 dataAlign="center"
                                                 key={item+i}
                                                 dataField={item}
