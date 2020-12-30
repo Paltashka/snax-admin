@@ -70,10 +70,24 @@ const AllGames = (props) => {
     );
 
   }
+  function getCaret(direction) {
+    if (direction === 'asc') {
+      return (
+            <i className="fas fa-sort-up"></i>
+      );
+    }
+    if (direction === 'desc') {
+      return (
+            <i className="fas fa-sort-up rotate"></i>
+      );
+    }
+
+  }
 
   const options = {
     exportCSVBtn: createCustomExportCSVButton,
     deleteBtn: createCustomExportDeleteButton,
+    sortIndicator: false,
     onRowClick: function(row) {
       props.setSelected(true)
       props.setRow(row)
@@ -170,7 +184,8 @@ const AllGames = (props) => {
                                                 filterFormatted
                                                 // filter={ { type: 'SelectFilter', options: obj, placeholder: 'Select'} }
                                                 editable={{type: 'number', placeholder: ' '}}
-                                                dataSort={true}
+                                                dataSort
+                                                caretRender={ getCaret }
                                                 isKey>
                         <div style={{cursor: 'pointer'}}>{upperCasePipe(item)}</div>
                       </TableHeaderColumn>
@@ -198,6 +213,7 @@ const AllGames = (props) => {
                                                   placeholder: ' ',
                                                   validator: jobNameValidator
                                                 }}
+                                                caretRender={ getCaret }
                                                 dataSort={true}>
                         <div style={{cursor: 'pointer'}}>{upperCasePipe(item)}</div>
                       </TableHeaderColumn>
@@ -209,6 +225,7 @@ const AllGames = (props) => {
                                                 filterFormatted
                                                 filter={ { type: 'SelectFilter', options: objLive, placeholder: 'Select'} }
                                                 editable={{placeholder: ' ', validator: jobNameValidator}}
+                                                caretRender={ getCaret }
                                                 dataSort={true}
 
                       >
@@ -226,6 +243,7 @@ const AllGames = (props) => {
                                                   options: {values: locked},
                                                   validator: jobNameValidator
                                                 }}
+                                                caretRender={ getCaret }
                                                 dataSort={true}>
                         <div style={{cursor: 'pointer'}}>Locked</div>
                       </TableHeaderColumn>
@@ -239,6 +257,7 @@ const AllGames = (props) => {
                                                   options: {values: colorTemplate},
                                                   validator: jobNameValidator
                                                 }}
+                                                caretRender={ getCaret }
                                                 dataSort={true}
                                                 dataFormat={(cell) => {
                         return <input disabled={true} type={'color'} value={cell} className={'color_api'}/>
@@ -256,6 +275,7 @@ const AllGames = (props) => {
                                                   options: {values: colorTemplate},
                                                   validator: jobNameValidator
                                                 }}
+                                                caretRender={ getCaret }
                                                 dataSort={true} dataFormat={(cell) => {
                         let date = Date.parse(cell)
                         return <span>{new Date(date).toDateString()}</span>
@@ -270,6 +290,7 @@ const AllGames = (props) => {
                                                 dataField={item}
                                                 // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' '}}
+                                                caretRender={ getCaret }
                                                 dataSort={true}>
                         <div style={{cursor: 'pointer'}}>Number of skins </div>
                       </TableHeaderColumn>
