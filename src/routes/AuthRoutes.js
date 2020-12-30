@@ -7,7 +7,7 @@ const Recoverpwd = lazy(() => import("../views/authentication/RecoverPwd"));
 const Maintanance = lazy(() => import("../views/authentication/Maintanance"));
 const Login = lazy(() => import("../views/authentication/Login"));
 
-var authRoutes = [
+let authRoutes = [
   {
     path: "/authentication/login",
     name: "Login",

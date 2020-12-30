@@ -10,13 +10,15 @@ import {
 } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import Form from 'react-validation/build/form';
+import {Games} from "../../api/games/games-api";
 
 
 const GeneralDetails = ( props ) => {
-    const { register, handleSubmit, errors } = useForm(); // initialise the hook
+    const { register, handleSubmit, errors } = useForm();
     const [Formvalue, setFormvalue] = useState({id: "", icon:"", email:"", age:"", title:"", mobile:"", developer:""});
     const onSubmit = (data) => {
         setFormvalue(data);
+        Games.updateGame()
     };
     const [previewImage, setPreviewImage] = useState(props.isRow.icon_url);
     const [image, setImage] = useState(null)
@@ -32,19 +34,7 @@ const GeneralDetails = ( props ) => {
                         <CardBody>
                            
                         <Form onSubmit={handleSubmit(onSubmit)}>
-                        <FormGroup>
-                            <label className="control-label" htmlFor="id">
-                                ID
-                            </label>
-                            <div className="mb-2">
-                                <input
-                                   type="number"
-                                    name="id"
-                                    className="form-control"
-                                   value={props.isRow.id}
-                                />
-                            </div>
-                        </FormGroup>
+
                         <FormGroup>
                             <label className="control-label" htmlFor="icon">
                                 Icon

@@ -25,54 +25,56 @@ const Skins = () => {
                 // ref={dragRef}
                 return <Col xs="12" md="4">
                     <Card>
-                        <CardImg top width="100%" src={card.icon}/>
                         <CardBody>
-                            <Form>
-                                <FormGroup>
-                                    <label className="control-label" htmlFor="id">
-                                        ID
-                                    </label>
-                                    <div className="mb-2">
-                                        <input
-                                            type="text"
-                                            name="id"
-                                            className="form-control"
-                                            // defaultValue={props.id}
-                                            defaultValue={card.id}
-                                        />
-                                    </div>
-                                </FormGroup>
-                                <FormGroup>
-                                    <label className="control-label" htmlFor="icon">
-                                        Image
-                                    </label>
-                                    <div className="mb-2">
-                                        <input
-                                            type="file"
-                                            name="icon"
-                                            ref={register({required: true})}
-                                            className="form-control"
-                                        />
-                                    </div>
-                                    <span className="text-danger">{errors.icon && 'Icon is required.'}</span>
-                                </FormGroup>
-                                <FormGroup>
-                                    <label className="control-label" htmlFor="name">
-                                        Name
-                                    </label>
-                                    <div className="mb-2">
-                                        <input
+                            <CardImg top width="100%" src={card.icon}/>
+                                <CardBody>
+                                    <Form>
+                                        <FormGroup>
+                                            <label className="control-label" htmlFor="id">
+                                                ID
+                                            </label>
+                                            <div className="mb-2">
+                                                <input
+                                                    type="text"
+                                                    name="id"
+                                                    className="form-control"
+                                                    // defaultValue={props.id}
+                                                    defaultValue={card.id}
+                                                />
+                                            </div>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <label className="control-label" htmlFor="icon">
+                                                Image
+                                            </label>
+                                            <div className="mb-2">
+                                                <input
+                                                    type="file"
+                                                    name="icon"
+                                                    ref={register({required: true})}
+                                                    className="form-control"
+                                                />
+                                            </div>
+                                            <span className="text-danger">{errors.icon && 'Icon is required.'}</span>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <label className="control-label" htmlFor="name">
+                                                Name
+                                            </label>
+                                            <div className="mb-2">
+                                                <input
 
-                                            type="text"
-                                            name="name"
-                                            ref={register({required: true})}
-                                            className="form-control"
-                                            defaultValue={card.name}
-                                        />
-                                    </div>
-                                    <span className="text-danger">{errors.name && 'Name is required.'}</span>
-                                </FormGroup>
-                            </Form>
+                                                    type="text"
+                                                    name="name"
+                                                    ref={register({required: true})}
+                                                    className="form-control"
+                                                    defaultValue={card.name}
+                                                />
+                                            </div>
+                                            <span className="text-danger">{errors.name && 'Name is required.'}</span>
+                                        </FormGroup>
+                                    </Form>
+                                </CardBody>
                         </CardBody>
                     </Card>
                 </Col>

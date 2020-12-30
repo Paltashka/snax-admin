@@ -77,6 +77,10 @@ const AllGames = (props) => {
     onRowClick: function(row) {
       props.setSelected(true)
       props.setRow(row)
+      props.setGeneral(true)
+      props.setPCK(false)
+      props.setIsSkins(false)
+      props.setGames(false)
     },
 
     // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows
