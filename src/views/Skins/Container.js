@@ -1,6 +1,14 @@
-import React, { useState, useCallback } from 'react';
-import { Skins } from './Skins';
+import React, {useState, useCallback} from 'react';
+import {Skins} from './Skins';
 import update from 'immutability-helper';
+import img1 from "../../assets/images/big/img1.jpg";
+import img2 from "../../assets/images/big/img2.jpg";
+import img3 from "../../assets/images/big/img3.jpg";
+import img4 from "../../assets/images/big/img4.jpg";
+import img5 from "../../assets/images/big/img5.jpg";
+import img6 from "../../assets/images/big/img6.jpg";
+import {Row} from "reactstrap";
+
 const style = {
     width: 400,
 };
@@ -8,33 +16,35 @@ export const Container = () => {
     {
         const [cards, setCards] = useState([
             {
-                id: 1,
-                text: 'Write a cool JS library',
+                "id": "1",
+                "icon": img1,
+                "name": "Jon",
             },
             {
-                id: 2,
-                text: 'Make it generic enough',
+                "id": "2",
+                "icon": img2,
+                "name": "John",
             },
             {
-                id: 3,
-                text: 'Write README',
+                "id": "3",
+                "icon": img3,
+                "name": "Peter",
             },
             {
-                id: 4,
-                text: 'Create some examples',
+                "id": "4",
+                "icon": img4,
+                "name": "Fred",
             },
             {
-                id: 5,
-                text: 'Spam in Twitter and IRC to promote it (note that this element is taller than the others)',
+                "id": "5",
+                "icon": img5,
+                "name": "Cat",
             },
             {
-                id: 6,
-                text: '???',
-            },
-            {
-                id: 7,
-                text: 'PROFIT',
-            },
+                "id": "6",
+                "icon": img6,
+                "name": "Jorge",
+            }
         ]);
         const moveCard = useCallback((dragIndex, hoverIndex) => {
             const dragCard = cards[dragIndex];
@@ -45,11 +55,13 @@ export const Container = () => {
                 ],
             }));
         }, [cards]);
+
         const renderCard = (card, index) => {
-            return (<Skins key={card.id} index={index} id={card.id} text={card.text} moveCard={moveCard}/>);
+            return (<Skins key={card.id} index={index} id={card.id} name={card.name} icon={card.icon}
+                           moveCard={moveCard}/>);
         };
-        return (<>
-            <div>{cards.map((card, i) => renderCard(card, i))}</div>
-        </>);
+        return (
+            <Row>{cards.map((card, i) => renderCard(card, i))}</Row>
+        );
     }
 };
