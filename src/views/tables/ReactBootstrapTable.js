@@ -121,10 +121,12 @@ const AllGames = (props) => {
    obj[item]=item
  })
 
-  function enumFormatter(cell, row, enumObject) {
+  const arrayName = allName
+  const objName = {}
+  arrayName.forEach(item=>{
+    objName[item]=item
+  })
 
-    return cell;
-  }
 
  if (isLoaded) {
   return <div>Loading...</div>
@@ -154,7 +156,6 @@ const AllGames = (props) => {
                                                 key={item+i}
                                                 dataField={item}
                                                 filterFormatted
-                                                formatExtraData={ allId }
                                                 filter={ { type: 'SelectFilter', options: obj, placeholder: 'Select'} }
                                                 editable={{type: 'number', placeholder: ' '}}
                                                 dataSort={true}
@@ -179,9 +180,7 @@ const AllGames = (props) => {
                                                 key={item+i}
                                                 dataField={item}
                                                 filterFormatted
-                                                dataFormat={ enumFormatter }
-                                                formatExtraData={ allName }
-                                                filter={ { type: 'SelectFilter', options: allName, placeholder: 'Select'} }
+                                                filter={ { type: 'SelectFilter', options: objName, placeholder: 'Select'} }
                                                 editable={{
                                                   type: 'string',
                                                   placeholder: ' ',
@@ -194,7 +193,7 @@ const AllGames = (props) => {
                       return <TableHeaderColumn width="100"
                                                 dataAlign="center"
                                                 key={item+i} dataField={item}
-                                                filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' ', validator: jobNameValidator}}
                                                 dataSort={true}
                                                 dataAlign='center'
@@ -206,7 +205,7 @@ const AllGames = (props) => {
                                                 dataAlign="center"
                                                 key={item+i}
                                                 dataField={item}
-                                                filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{
                                                   type: 'select',
                                                   options: {values: locked},
@@ -219,7 +218,7 @@ const AllGames = (props) => {
                       return <TableHeaderColumn width="100"
                                                 dataAlign="center"
                                                 key={item+i} dataField={item}
-                                                filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{
                                                   type: 'select',
                                                   options: {values: colorTemplate},
@@ -236,7 +235,7 @@ const AllGames = (props) => {
                       return <TableHeaderColumn width="100"
                                                 dataAlign="center"
                                                 key={item+i} dataField={item}
-                                                filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{
                                                   type: 'date',
                                                   options: {values: colorTemplate},
@@ -254,7 +253,7 @@ const AllGames = (props) => {
                                                 dataAlign="center"
                                                 key={item+i}
                                                 dataField={item}
-                                                filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' '}}
                                                 dataSort={true}>
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
