@@ -81,13 +81,12 @@ const AllGames = (props) => {
             <i className="fas fa-sort-up rotate"></i>
       );
     }
-
   }
 
   const options = {
     exportCSVBtn: createCustomExportCSVButton,
     deleteBtn: createCustomExportDeleteButton,
-    sortIndicator: false,
+    sortIndicator: true,
     onRowClick: function(row) {
       props.setSelected(true)
       props.setRow(row)
@@ -198,7 +197,7 @@ const AllGames = (props) => {
                                                 dataFormat={(cell) => {
                                                   return <img src={cell} dataSort={true} className={'icons'}/>
                                                 }}>
-                        <div style={{cursor: 'pointer'}}>Icon</div>
+                        <div>Icon</div>
 
                       </TableHeaderColumn>
                     } else if (item === 'name') {
@@ -301,7 +300,7 @@ const AllGames = (props) => {
                       }}  dataFormat={(cell) => {
                         return <button className="btn-del" onClick={(row)=>console.log(row)}>Delete</button>
                       }}>
-                        <div style={{cursor: 'pointer'}}>{item}</div>
+                        <div>{item}</div>
 
                       </TableHeaderColumn>
                     }
