@@ -109,9 +109,9 @@ const Datatable = lazy(() => import("../views/tables/ReactBootstrapTable"));
 /*                               Map Page                                         */
 /*--------------------------------------------------------------------------------*/
 const Vectormap = lazy(() => import("../views/maps/VectorMap"));
-var auths = [].concat(AuthRoutes);
+let auths = [].concat(AuthRoutes);
 
-var ThemeRoutes = [
+let ThemeRoutes = [
   // {
   //   navlabel: true,
   //   name: "Personal",

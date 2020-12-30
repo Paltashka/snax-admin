@@ -23,14 +23,7 @@ export default () => {
     return (
         <>
             {
-                isSelected && <div>
-                    <button className={'btn-nav'} onClick={() => {
-                        setGeneral(true)
-                        setGames(false)
-                        setPCK(false)
-                        setIsSkins(false);
-                    }}>General details
-                    </button>
+                isSelected && <div className='mb-2'>
 
                     <button className={'btn-nav'} onClick={() => {
                         setGeneral(false)
@@ -47,17 +40,10 @@ export default () => {
                         setGeneral(false)
                     }}>PCK
                     </button>
-                    <button className={'btn-nav'} onClick={() => {
-                        setGeneral(false)
-                        setGames(true)
-                        setPCK(false)
-                        setIsSkins(false);
-                    }}>Games
-                    </button>
                 </div>
             }
             {
-                isGames && <AllGames setRow={setRow} setSelected={setSelected}/>
+                isGames && <AllGames setRow={setRow} setSelected={setSelected} setGeneral={setGeneral} setPCK={setPCK} setIsSkins={setIsSkins} setGames={setGames}/>
             }
             {
                 isGeneral && <GeneralDetails isRow={isRow}/>
