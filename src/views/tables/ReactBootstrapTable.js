@@ -158,11 +158,13 @@ const AllGames = (props) => {
                     insertRow={true}
                     options={options}
                     tableHeaderClass="mb-4"
+
                 >
                   {headers.map((item, i) => {
                     if (i === 0) {
                       return <TableHeaderColumn width="70"
                                                 dataAlign="center"
+                                                dataVertical="inherit"
                                                 key={item+i}
                                                 dataField={item}
                                                 filterFormatted

@@ -175,3 +175,12 @@
   opacity: 1;
   transition: 0s
 }
+.table thead th {
+  vertical-align: inherit;
+}
+.table th, .table td {
+  vertical-align: center;
+}
+table {
+  border-collapse: inherit;
+}
