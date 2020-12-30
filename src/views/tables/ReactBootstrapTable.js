@@ -6,6 +6,7 @@ import {
   Card,
   CardBody,
   Row,
+  Spinner,
   Col
 } from 'reactstrap';
 
@@ -151,7 +152,12 @@ const AllGames = (props) => {
 
 
  if (isLoaded) {
-  return <div>Loading...</div>
+  return(<CardBody>
+     <div className='centr'>
+       <Spinner style={{ width: '10rem', height: '10rem' }} color="info" />
+     </div>
+   </CardBody>
+ )
 }else {
 
   return (

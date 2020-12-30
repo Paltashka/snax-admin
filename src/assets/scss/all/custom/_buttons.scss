@@ -187,3 +187,10 @@ table {
 .rotate{
   transform: rotate(180deg);
 }
+.centr{
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
