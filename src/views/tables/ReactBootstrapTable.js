@@ -29,7 +29,7 @@ const selectRowProp = {
 };
 
 
-const headers = ['id', 'icon_url', 'name', 'is_locked_default', 'main_color_hex', 'number of skins', 'live_build_id', 'updated_at', 'Actions'];
+const headers = ['id', 'icon_url', 'name', 'is_locked_default', 'main_color_hex', 'skins_count', 'is_live', 'updated_at', 'Actions'];
 
 
 
@@ -90,8 +90,9 @@ const AllGames = (props) => {
 
   const [isHidden, setHidden] = useState(true);
   const [isCard, setCard] = useState(false);
-  const [allId, setId] = useState([])
-  const [allName, setName] = useState([])
+  const [allLive, setLive] = useState([]);
+  const [allLocked, setLocked] = useState([]);
+
   function changeHidden() {
     setHidden(!isHidden)
     return isHidden
@@ -115,21 +116,25 @@ const AllGames = (props) => {
   const games = useSelector(getAllGames);
   const isLoaded = useSelector(getIsGamesFetching);
 
+
   useEffect(()=>{
-    setId(games.map(item=>item.id).sort((a,b)=>a-b))
-    setName(games.map(item=>item.name))
+    setLive(games.map(item=>item.is_live))
+    setLocked(games.map(item=>item.is_locked_default))
   }, [games])
-  const array = allId
-  const obj = {}
+
+  const array = allLive
+  const objLive = {}
  array.forEach(item=>{
-   obj[item]=item
+   objLive[item]=item
  })
 
-  const arrayName = allName
-  const objName = {}
+  const arrayName = allLocked
+  const objLocked = {}
   arrayName.forEach(item=>{
-    objName[item]=item
+    objLocked[item]=item
   })
+
+
 
 
  if (isLoaded) {
@@ -160,7 +165,7 @@ const AllGames = (props) => {
                                                 key={item+i}
                                                 dataField={item}
                                                 filterFormatted
-                                                filter={ { type: 'SelectFilter', options: obj, placeholder: 'Select'} }
+                                                // filter={ { type: 'SelectFilter', options: obj, placeholder: 'Select'} }
                                                 editable={{type: 'number', placeholder: ' '}}
                                                 dataSort={true}
                                                 isKey>
@@ -184,7 +189,7 @@ const AllGames = (props) => {
                                                 key={item+i}
                                                 dataField={item}
                                                 filterFormatted
-                                                filter={ { type: 'SelectFilter', options: objName, placeholder: 'Select'} }
+                                                // filter={ { type: 'SelectFilter', options: objName, placeholder: 'Select'} }
                                                 editable={{
                                                   type: 'string',
                                                   placeholder: ' ',
@@ -193,11 +198,13 @@ const AllGames = (props) => {
                                                 dataSort={true}>
                         <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
                       </TableHeaderColumn>
-                    } else if (item === 'live_build_id') {
+                    } else if (item === 'is_live') {
                       return <TableHeaderColumn width="100"
                                                 dataAlign="center"
-                                                key={item+i} dataField={item}
-                                                // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                key={item+i}
+                                                dataField={item}
+                                                filterFormatted
+                                                filter={ { type: 'SelectFilter', options: objLive, placeholder: 'Select'} }
                                                 editable={{placeholder: ' ', validator: jobNameValidator}}
                                                 dataSort={true}
                                                 dataAlign='center'
@@ -209,7 +216,8 @@ const AllGames = (props) => {
                                                 dataAlign="center"
                                                 key={item+i}
                                                 dataField={item}
-                                                // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                filterFormatted
+                                                filter={ { type: 'SelectFilter', options: objLocked, placeholder: 'Select'} }
                                                 editable={{
                                                   type: 'select',
                                                   options: {values: locked},
@@ -221,8 +229,8 @@ const AllGames = (props) => {
                     } else if (item === 'main_color_hex') {
                       return <TableHeaderColumn width="100"
                                                 dataAlign="center"
-                                                key={item+i} dataField={item}
-                                                // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
+                                                key={item+i}
+                                                dataField={item}
                                                 editable={{
                                                   type: 'select',
                                                   options: {values: colorTemplate},
@@ -252,7 +260,7 @@ const AllGames = (props) => {
                         <span style={{cursor: 'pointer'}}>Last update</span>
 
                       </TableHeaderColumn>
-                    } else if (item === 'number of skins') {
+                    } else if (item === 'skins_count') {
                       return <TableHeaderColumn width="100"
                                                 dataAlign="center"
                                                 key={item+i}
@@ -260,7 +268,7 @@ const AllGames = (props) => {
                                                 // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' '}}
                                                 dataSort={true}>
-                        <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
+                        <span style={{cursor: 'pointer'}}>Number of skins </span>
                       </TableHeaderColumn>
                     }else if ( item) {
                       return <TableHeaderColumn width="100"

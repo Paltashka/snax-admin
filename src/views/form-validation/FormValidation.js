@@ -145,7 +145,7 @@ const GeneralDetails = ( props ) => {
                                     Performance
                                 </label>
                                 <div className="mb-2">
-                                    <select name="performance" className="form-control" >
+                                    <select name="performance" className="form-control" defaultValue={props.isRow.performance}>
                                         <option value="">Select Option</option>
                                         <option value="Time">Time</option>
                                         <option value="Moves">Moves</option>
