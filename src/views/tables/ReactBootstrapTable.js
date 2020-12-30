@@ -122,7 +122,7 @@ const AllGames = (props) => {
  })
 
   function enumFormatter(cell, row, enumObject) {
-    console.log(enumObject)
+
     return cell;
   }
 
