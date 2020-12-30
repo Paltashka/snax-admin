@@ -162,6 +162,7 @@ const AllGames = (props) => {
                   {headers.map((item, i) => {
                     if (i === 0) {
                       return <TableHeaderColumn width="70"
+                                                dataAlign="center"
                                                 key={item+i}
                                                 dataField={item}
                                                 filterFormatted
@@ -169,7 +170,7 @@ const AllGames = (props) => {
                                                 editable={{type: 'number', placeholder: ' '}}
                                                 dataSort={true}
                                                 isKey>
-                        <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
+                        <div style={{cursor: 'pointer'}}>{upperCasePipe(item)}</div>
                       </TableHeaderColumn>
                     } else if (item === "icon_url") {
                       return <TableHeaderColumn width="90"
@@ -180,7 +181,7 @@ const AllGames = (props) => {
                                                 dataFormat={(cell) => {
                                                   return <img src={cell} dataSort={true} className={'icons'}/>
                                                 }}>
-                        <span style={{cursor: 'pointer'}}>Icon</span>
+                        <div style={{cursor: 'pointer'}}>Icon</div>
 
                       </TableHeaderColumn>
                     } else if (item === 'name') {
@@ -196,7 +197,7 @@ const AllGames = (props) => {
                                                   validator: jobNameValidator
                                                 }}
                                                 dataSort={true}>
-                        <span style={{cursor: 'pointer'}}>{upperCasePipe(item)}</span>
+                        <div style={{cursor: 'pointer'}}>{upperCasePipe(item)}</div>
                       </TableHeaderColumn>
                     } else if (item === 'is_live') {
                       return <TableHeaderColumn width="100"
@@ -207,9 +208,9 @@ const AllGames = (props) => {
                                                 filter={ { type: 'SelectFilter', options: objLive, placeholder: 'Select'} }
                                                 editable={{placeholder: ' ', validator: jobNameValidator}}
                                                 dataSort={true}
-                                                dataAlign='center'
+
                       >
-                        <span style={{cursor: 'pointer'}}>Live</span>
+                        <div style={{cursor: 'pointer'}}>Live</div>
                       </TableHeaderColumn>
                     } else if (item === 'is_locked_default') {
                       return <TableHeaderColumn width="100"
@@ -224,7 +225,7 @@ const AllGames = (props) => {
                                                   validator: jobNameValidator
                                                 }}
                                                 dataSort={true}>
-                        <span style={{cursor: 'pointer'}}>Locked</span>
+                        <div style={{cursor: 'pointer'}}>Locked</div>
                       </TableHeaderColumn>
                     } else if (item === 'main_color_hex') {
                       return <TableHeaderColumn width="110"
@@ -240,7 +241,7 @@ const AllGames = (props) => {
                                                 dataFormat={(cell) => {
                         return <input disabled={true} type={'color'} value={cell} className={'color_api'}/>
                       }}>
-                        <span style={{cursor: 'pointer'}}>Color template</span>
+                        <div style={{cursor: 'pointer'}}>Color template</div>
 
                       </TableHeaderColumn>
                     } else if (item === 'updated_at') {
@@ -257,7 +258,7 @@ const AllGames = (props) => {
                         let date = Date.parse(cell)
                         return <span>{new Date(date).toDateString()}</span>
                       }}>
-                        <span style={{cursor: 'pointer'}}>Last update</span>
+                        <div style={{cursor: 'pointer'}}>Last update</div>
 
                       </TableHeaderColumn>
                     } else if (item === 'skins_count') {
@@ -268,7 +269,7 @@ const AllGames = (props) => {
                                                 // filter={{type: 'TextFilter', delay: 1000, placeholder: ' '}}
                                                 editable={{placeholder: ' '}}
                                                 dataSort={true}>
-                        <span style={{cursor: 'pointer'}}>Number of skins </span>
+                        <div style={{cursor: 'pointer'}}>Number of skins </div>
                       </TableHeaderColumn>
                     }else if ( item) {
                       return <TableHeaderColumn width="100"
@@ -277,7 +278,7 @@ const AllGames = (props) => {
                       }}  dataFormat={(cell) => {
                         return <button className="btn-del" onClick={(row)=>console.log(row)}>Delete</button>
                       }}>
-                        <span style={{cursor: 'pointer'}}>{item}</span>
+                        <div style={{cursor: 'pointer'}}>{item}</div>
 
                       </TableHeaderColumn>
                     }

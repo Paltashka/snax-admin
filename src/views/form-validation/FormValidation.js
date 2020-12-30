@@ -90,6 +90,7 @@ const GeneralDetails = ( props ) => {
                             </label>
                             <div className="mb-2">
                                 <input
+                                    disabled
                                     type="color"
                                     name="color"
                                     ref={register({ required: true})}
