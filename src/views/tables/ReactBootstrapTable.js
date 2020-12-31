@@ -153,7 +153,7 @@ const AllGames = (props) => {
 
  if (isLoaded) {
   return(<CardBody>
-     <div className='centr'>
+     <div className='center'>
        <Spinner style={{ width: '10rem', height: '10rem' }} color="info" />
      </div>
    </CardBody>

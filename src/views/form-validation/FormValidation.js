@@ -11,6 +11,7 @@ import {
 import { useForm } from 'react-hook-form';
 import Form from 'react-validation/build/form';
 import {Games} from "../../api/games/games-api";
+import ButtonSwitch from "../../components/buttons/ButtonSwitch";
 
 
 const GeneralDetails = ( props ) => {
@@ -159,11 +160,7 @@ const GeneralDetails = ( props ) => {
                                     Live
                                 </label>
                                 <div className="mb-2">
-                                    <select name="live" className="form-control" >
-                                        <option value="">Select Option</option>
-                                        <option value="Off">Off</option>
-                                        <option value="On">On</option>
-                                    </select>
+                                    <ButtonSwitch live={props}/>
                                 </div>
                         </FormGroup>
                         <FormGroup>

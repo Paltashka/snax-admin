@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import Skins from "../Skins";
 
 
+
 export default () => {
     const [isSelected, setSelected] = useState(false);
     const [isGames, setGames] = useState(true)
@@ -22,8 +23,18 @@ export default () => {
 
     return (
         <>
+
             {
+
+
                 isSelected && <div className='mb-2'>
+
+                    <button className={'btn-nav'} onClick={() => {
+                        setGeneral(true)
+                        setGames(false)
+                        setPCK(false)
+                        setIsSkins(false);
+                    }}>General details</button>
 
                     <button className={'btn-nav'} onClick={() => {
                         setGeneral(false)
