@@ -21,7 +21,7 @@ const GeneralDetails = ( props ) => {
         setFormvalue(data);
         Games.updateGame()
     };
-    const [previewImage, setPreviewImage] = useState(props.isRow.icon_url);
+    const [previewImage, setPreviewImage] = useState(props.row.icon_url);
     const [image, setImage] = useState(null)
 
 
@@ -33,7 +33,7 @@ const GeneralDetails = ( props ) => {
                         Form
                         </CardTitle>
                         <CardBody>
-                           
+
                         <Form onSubmit={handleSubmit(onSubmit)}>
 
                         <FormGroup>
@@ -67,7 +67,7 @@ const GeneralDetails = ( props ) => {
                                     name="name"
                                     ref={register({ required: true })}
                                     className="form-control"
-                                    value={props.isRow.name}
+                                    value={props.row.name}
                                 />
                             </div>
                             <span className="text-danger">{errors.name && 'Name is required.'}</span>
@@ -77,7 +77,7 @@ const GeneralDetails = ( props ) => {
                                 Locked
                             </label>
                             <div className="mb-2">
-                                <select name="locked" className="form-control" ref={register({ required: true })} defaultValue={props.isRow.is_locked_default=true ? "True" : "False"}>
+                                <select name="locked" className="form-control" ref={register({ required: true })} defaultValue={props.row.is_locked_default=true ? "True" : "False"}>
                                     <option value="">Select Option</option>
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
@@ -96,7 +96,7 @@ const GeneralDetails = ( props ) => {
                                     name="color"
                                     ref={register({ required: true})}
                                     className="form-control"
-                                    value={props.isRow.main_color_hex}
+                                    value={props.row.main_color_hex}
                                 />
                             </div>
                             <span className="text-danger">{errors.color && 'Color template is required.'}</span>
@@ -106,7 +106,7 @@ const GeneralDetails = ( props ) => {
                                     Coins balance
                                 </label>
                                 <div className="mb-2">
-                                    <select name="balance" className="form-control" defaultValue={props.isRow.show_balance=true ? "Yes" : "NO"}>
+                                    <select name="balance" className="form-control" defaultValue={props.row.show_balance=true ? "Yes" : "NO"}>
                                         <option value="">Select Option</option>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
@@ -118,7 +118,7 @@ const GeneralDetails = ( props ) => {
                                     Time limit
                                 </label>
                                 <div className="mb-2">
-                                    <select name="limit" className="form-control" disabled={props.isRow.show_timer}>
+                                    <select name="limit" className="form-control" disabled={props.row.show_timer}>
                                         <option value="">Select Option</option>
                                         <option value="0">0</option>
                                         <option value="5">5</option>
@@ -147,7 +147,7 @@ const GeneralDetails = ( props ) => {
                                     Performance
                                 </label>
                                 <div className="mb-2">
-                                    <select name="performance" className="form-control" defaultValue={props.isRow.performance}>
+                                    <select name="performance" className="form-control" defaultValue={props.row.performance}>
                                         <option value="">Select Option</option>
                                         <option value="Time">Time</option>
                                         <option value="Moves">Moves</option>
@@ -168,7 +168,7 @@ const GeneralDetails = ( props ) => {
                                 Save
                             </Button>
                         </FormGroup>
-                        </Form> 
+                        </Form>
                         {/*<hr/>              */}
                         {/*<h4 className="mt-5">Check Data after form submit</h4> */}
                         {/*<ListGroup>*/}

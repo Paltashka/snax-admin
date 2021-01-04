@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Collapse } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { useSelector } from "react-redux";
-
+import {useDispatch, useSelector} from "react-redux";
+import {getAllGamesBtn, setGamesBtnAction} from "../../../reducers/gamesBtn";
 
 const Sidebar = (props) => {
   const activeRoute = (routeName) => {
@@ -21,6 +21,8 @@ const Sidebar = (props) => {
   const [cstate, csetState] = useState({
     extrapages: activeRoute("/sample-pages/extra-pages") !== "" ? true : false,
   });
+  const dispatch = useDispatch();
+  const gamesBtn = useSelector(getAllGamesBtn);
   const settings = useSelector((state) => state.settings);
 
   /*--------------------------------------------------------------------------------*/
@@ -41,7 +43,16 @@ const Sidebar = (props) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const showMobilemenu = () => {
+  const showMobilemenu = (name) => {
+    if (name === 'Games') {
+      dispatch(setGamesBtnAction({
+        isGames: true,
+        isPCK: false,
+        isGeneral: false,
+        isSkins: false,
+        isSelected: false,
+      }))
+    }
     if(window.innerWidth < 800){
       document.getElementById("main-wrapper").classList.toggle("show-sidebar");
     }
@@ -194,7 +205,7 @@ const Sidebar = (props) => {
                   >
                     <NavLink
                       to={prop.path}
-                      onClick={showMobilemenu}
+                      onClick={() => showMobilemenu(prop.name)}
                       className="sidebar-link"
                       activeClassName="active"
                     >

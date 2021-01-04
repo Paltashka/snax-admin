@@ -89,12 +89,12 @@ const AllGames = (props) => {
     deleteBtn: createCustomExportDeleteButton,
     sortIndicator: true,
     onRowClick: function(row) {
-      props.setSelected(true)
       props.setRow(row)
-      props.setGeneral(true)
-      props.setPCK(false)
-      props.setIsSkins(false)
-      props.setGames(false)
+      props.setSelected()
+      // props.setGeneral()
+      // props.setPCK()
+      // props.setIsSkins()
+      // props.setGames()
     },
 
     // afterInsertRow: onAfterInsertRow,  // A hook for after insert rows

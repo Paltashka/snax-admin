@@ -53,7 +53,7 @@ export default function CustomizedSwitches(props) {
                 <Grid component="label" container alignItems="center" spacing={1}>
                     <Grid item>Off</Grid>
                     <Grid item>
-                        <AntSwitch checked={props.live.isRow.is_live}  onChange={handleChange} name="checked" />
+                        <AntSwitch checked={props.live.row.is_live}  onChange={handleChange} name="checked" />
                     </Grid>
                     <Grid item>On</Grid>
                 </Grid>

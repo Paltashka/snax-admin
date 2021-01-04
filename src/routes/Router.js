@@ -348,17 +348,12 @@ let ThemeRoutes = [
   //   component: Email,
   // },
   {
-    path: "/contacts",
+    path: "/games",
     name: "Games",
     icon: "mdi mdi-contacts",
     component: Contacts,
   },
-  // {
-  //   path: "/calendar",
-  //   name: "Calendar",
-  //   icon: "mdi mdi-calendar-check",
-  //   component: Calendar,
-  // },
+
   // {
   //   path: "/notes",
   //   name: "Notes",
