@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import AllGames from "../tables/ReactBootstrapTable";
-import GeneralDetails from "../form-validation/FormValidation";
+import GeneralDetails from "../general-details/GeneralDetails";
 import PCK from "../chat/Chat";
 import { getAllGamesThunk } from "../../reducers/games";
 import {useDispatch, useSelector} from "react-redux";

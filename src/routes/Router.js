@@ -93,7 +93,7 @@ const Tagselect = lazy(() => import("../views/form-pickers/TagSelect"));
 /*                          Form Validation Page                                  */
 /*--------------------------------------------------------------------------------*/
 const FormValidate = lazy(() =>
-  import("../views/form-validation/FormValidation")
+  import("../views/general-details/GeneralDetails")
 );
 /*--------------------------------------------------------------------------------*/
 /*                            Form Wizard Page                                    */
@@ -447,7 +447,7 @@ let ThemeRoutes = [
   //   ],
   // },
   // {
-  //   path: "/form-validation",
+  //   path: "/general-details",
   //   name: "Form",
   //   component: FormValidate,
   // },

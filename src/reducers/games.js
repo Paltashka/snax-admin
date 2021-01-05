@@ -60,11 +60,13 @@ export const updateGameThunk = (body) => async (dispatch) => {
         dispatch(isGameUpdating(false));
     }
 }
-export const addGameThunk = (body) => async (dispatch) => {
+export const addGameThunk = (game) => async (dispatch) => {
     try{
         dispatch(isGameAdding(true));
-        //request api
-
+        const response = await Games.addGame(game)
+        if(response.status === 200) {
+            dispatch(getAllGamesThunk());
+        }
     }
     catch(e){console.log(e);} finally{
         dispatch(isGameUpdating(false));

@@ -13,6 +13,8 @@ export const Games = {
     updateGame(game) {
         return instance.post('games/updateGame', game);
     },
-    addGame() {},
+    addGame(game) {
+        return instance.post('games/', game);
+    },
 
 };

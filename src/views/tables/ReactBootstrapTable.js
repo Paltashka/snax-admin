@@ -89,7 +89,6 @@ const AllGames = (props) => {
     deleteBtn: createCustomExportDeleteButton,
     sortIndicator: true,
     onRowClick: function(row) {
-      console.log(row);
       props.setRow(row)
       props.setSelected()
       // props.setGeneral()
