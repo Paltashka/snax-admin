@@ -1,27 +1,20 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
 import AllGames from "../tables/ReactBootstrapTable";
 import GeneralDetails from "../form-validation/FormValidation";
 import PCK from "../chat/Chat";
-import {getAllGames, getAllGamesThunk} from "../../reducers/games";
+import { getAllGamesThunk } from "../../reducers/games";
 import {useDispatch, useSelector} from "react-redux";
 import Skins from "../Skins";
 import {getAllGamesBtn, setGamesBtnAction, setGamesBtnSelectedAction} from "../../reducers/gamesBtn";
 
 
 export default () => {
-    // const [isSelected, setSelected] = useState(false);
-    // const [isGames, setGames] = useState(true)
-    // const [isGeneral, setGeneral] = useState(false);
-    // const [isSkins, setIsSkins] = useState(false);
-    // const [isPCK, setPCK] = useState(false);
     const [row, setRow] = useState(null)
     const dispatch = useDispatch();
 
     const gamesBtn = useSelector(getAllGamesBtn);
 
     const setGamesBtn = (property) => {
-        // console.log(property);
         dispatch(setGamesBtnAction({...gamesBtn, [property]: !gamesBtn[property]}))
     }
 

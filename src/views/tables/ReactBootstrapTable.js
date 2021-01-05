@@ -23,7 +23,7 @@ import {useDispatch, useSelector} from "react-redux";
 const imgs = [img1, img2, img3, img4, img5, img6];
 
 const selectRowProp = {
-  mode: 'checkbox',
+  mode: 'radio',
   clickToSelect: true,
   hideSelectColumn: true,
   bgColor: '#bce5fc'
@@ -89,6 +89,7 @@ const AllGames = (props) => {
     deleteBtn: createCustomExportDeleteButton,
     sortIndicator: true,
     onRowClick: function(row) {
+      console.log(row);
       props.setRow(row)
       props.setSelected()
       // props.setGeneral()

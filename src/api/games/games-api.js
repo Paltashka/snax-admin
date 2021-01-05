@@ -11,7 +11,8 @@ export const Games = {
     getBuildsByGameID() {},
     getNewGameDrafts() {},
     updateGame(game) {
-        return instance.post('Gamed/42', game)
+        return instance.post('games/updateGame', game);
     },
     addGame() {},
+
 };
