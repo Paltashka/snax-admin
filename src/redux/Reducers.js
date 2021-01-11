@@ -20,7 +20,7 @@ const Reducers = combineReducers({
   maintodoReducer,
   maincontactReducer,
   games,
-  gamesBtn
+  gamesBtn,
 });
 
 export default Reducers;

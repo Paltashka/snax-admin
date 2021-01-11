@@ -5,6 +5,7 @@ const instance = axios.create({
 });
 
 export const Games = {
+    //General
     getAllGames() {
         return instance.get('games/');
     },
@@ -17,4 +18,13 @@ export const Games = {
         return instance.post('games/', game);
     },
 
+    //Skins
+    getAllSkins(skin){
+        return instance.get('games/getSkinsByGameId/3')
+    },
+
+    //PCK
+    getAllPCK(pck){
+        return instance.get('games/getBuildsByGameId/42')
+    }
 };

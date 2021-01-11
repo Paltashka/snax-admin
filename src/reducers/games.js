@@ -1,4 +1,4 @@
-import {GET_ALL_ID, GET_GAMES, IS_GAME_ADDING, IS_GAME_UPDATING, IS_GAMES_FETCHING} from "./constants";
+import {GET_ALL_ID, GET_GAMES, GET_SKINS, IS_GAME_ADDING, IS_GAME_UPDATING, IS_GAMES_FETCHING, GET_PCK} from "./constants";
 import {Games} from "../api/games/games-api";
 
 const initialState = {
@@ -6,6 +6,8 @@ const initialState = {
     isGamesFetching: false,
     isGameUpdating: false,
     isGameAdding: false,
+    allSkins: [],
+    allPCK: []
 };
 
 export default function reducer(state = initialState, {type, payload}) {
@@ -30,6 +32,16 @@ export default function reducer(state = initialState, {type, payload}) {
                 ...state,
                 isGameAdding: payload.isAdding
             }
+        case GET_SKINS:
+            return {
+                ...state,
+                allSkins: payload.skins
+            }
+        case GET_PCK:
+            return {
+                ...state,
+                allPCK: payload.pck
+            }
         default:
             return state;
     }
@@ -40,6 +52,9 @@ const setIsGamesFetching = (isFetching) => ({type: IS_GAMES_FETCHING, payload: {
 const isGameUpdating = (isUpdating) => ({type: IS_GAME_UPDATING, payload: {isUpdating}});
 const isGameAdding = (isAdding) => ({type: IS_GAME_ADDING, payload: {isAdding}});
 
+const getAllSkinsAction = skins => ({type: GET_SKINS, payload: {skins}});
+
+const getAllPCKAction = pck => ({type: GET_PCK, payload: {pck}});
 
 export const getAllGamesThunk = () => async (dispatch) => {
     try{
@@ -73,7 +88,27 @@ export const addGameThunk = (game) => async (dispatch) => {
     }
 }
 
+export const getAllSkinsThunk = skins => async (dispatch) => {
+    try{
+        const response = await Games.getAllSkins();
+        dispatch(getAllSkinsAction(response.data.payload));
+    }catch (e) {
+        console.log(e)
+    }
+}
+
+export const getAllPCKThunk = pck => async (dispatch) => {
+    try{
+        const response = await Games.getAllPCK();
+        dispatch(getAllPCKAction(response.data.payload));
+    }catch (e) {
+        console.log(e)
+    }
+}
+
 export const getAllGames = (state) => state.games.allGames;
 export const getIsGamesFetching = (state) => state.games.isGamesFetching;
 export const getIsGameUpdating = (state) => state.games.isGameUpdating;
 export const getIsGameAdding = (state) => state.games.isGameAdding;
+export const getAllSkins = state => state.games.allSkins;
+export const getAllPCK = state => state.games.allPCK;

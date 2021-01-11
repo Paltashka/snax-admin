@@ -6,3 +6,5 @@ export const SET_GAMES_BTN = "gamesBtn/SET_GAMES_BTN";
 export const SET_GAMES_BTN_SELECTED = 'gamesBtn/SET_GAMES_BTN_SELECTED';
 export const IS_GAME_UPDATING = 'games/IS_GAME_UPDATING';
 export const IS_GAME_ADDING = 'games/IS_GAME_ADDING';
+export const GET_SKINS = "skins/GET_SKINS";
+export const GET_PCK = "pck/GET_PCK";

@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import {Card, CardBody} from "reactstrap";
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
 import * as pck from "../tables/DataGeneralDetail";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllPCK, getAllPCKThunk} from "../../reducers/games";
 
 
 
-const headersPck = ['Version', 'File name', 'Updated at', 'Updated by', 'Env', 'Comments'];
+const headersPck = ['version', 'game_id', 'created_at', 'build_id', 'pck_url', 'Comments'];
 
 
 function jobNameValidator(value, row) {
@@ -28,43 +30,53 @@ function jobNameValidator(value, row) {
 }
 
 
-
 const PCK =  () => {
+
+  const dispatch = useDispatch();
+  const pckData = useSelector(getAllPCK);
+  useEffect( () => {
+    dispatch(getAllPCKThunk())
+  }, []);
+
+  pckData.filter(item => item.created_at = new Date(item.created_at).toDateString())
 
   return (
       <Card>
         <CardBody>
           <BootstrapTable
-              data={pck.jsonpck}
+              data={pckData}
               insertRow={true}
           >
 
             {headersPck.map((item,i)=> {
               if (i === 0) {
-                return <TableHeaderColumn width="100" key={item+i} dataField={item}
+                return <TableHeaderColumn width="30" key={item+i} dataField={item}
                                           editable={{type: 'number', placeholder: ' ', validator: jobNameValidator}}
                                           dataSort isKey>
-                  <span style={{cursor: 'pointer'}}>{item}</span>
+                  <span style={{cursor: 'pointer'}}>Version</span>
                 </TableHeaderColumn>
-              } else if (item === 'Updated at') {
-                return <TableHeaderColumn width="100" key={item+i} dataField={item}
-                                          editable={{type: 'datetime', placeholder: ' ', validator: jobNameValidator}}
-                                          dataSort>
-                  <span style={{cursor: 'pointer'}}>{item}</span>
-                </TableHeaderColumn>
-              } else if (item === 'Updated by') {
+              } else if (item === 'created_at') {
+                        // it.created_at = new Date(it.created_at).toDateString()
+                          return <TableHeaderColumn width="30" key={item+i} dataField={item}
+                                                    editable={{type: 'datetime', placeholder: ' ', validator: jobNameValidator}}
+                                                    dataSort>
+                            <span style={{cursor: 'pointer'}}>Updated at</span>
+                            {console.log(item+i)}
+                          </TableHeaderColumn>
+
+              } else if (item === 'build_id') {
                 return <TableHeaderColumn width="100" key={item+i} dataField={item}
                                           editable={{type: 'string', placeholder: ' ', validator: jobNameValidator}}
                                           dataSort>
-                  <span style={{cursor: 'pointer'}}>{item}</span>
+                  <span style={{cursor: 'pointer'}}>Updated by</span>
                 </TableHeaderColumn>
-              } else if (item === 'Env') {
-                return <TableHeaderColumn width="100" key={item+i} dataField={item} editable={{
-                  type: 'select',
-                  options: {values: ['', 'Testing', 'Production']},
+              } else if (item === 'pck_url') {
+                return <TableHeaderColumn width="50" key={item+i} dataField={item} editable={{
+                  type: 'string',
+                  // options: {values: ['', 'Testing', 'Production']},
                   validator: jobNameValidator
-                }} dataSort>
-                  <span style={{cursor: 'pointer'}}>{item}</span>
+                }} dataSort style={{width: '50px !important'}}>
+                  <span style={{cursor: 'pointer'}}>Env</span>
                 </TableHeaderColumn>
               } else if (item === 'Comments') {
                 return <TableHeaderColumn width="100" key={item+i} dataField={item} hidden
@@ -76,7 +88,7 @@ const PCK =  () => {
                 placeholder: ' ',
                 validator: jobNameValidator
               }} dataSort>
-                <span style={{cursor: 'pointer'}}>{item}</span>
+                <span style={{cursor: 'pointer'}}>File name</span>
               </TableHeaderColumn>
             })
             }

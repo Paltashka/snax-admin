@@ -1,9 +1,11 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Card, CardBody, CardImg, FormGroup} from "reactstrap";
 import Form from "react-validation/build/form";
 import {useForm} from "react-hook-form";
 import {useDrag, useDrop} from 'react-dnd';
 import {ItemTypes} from './ItemTypes';
+import {useDispatch, useSelector} from "react-redux";
+import {getAllSkins, getAllSkinsThunk} from "../../reducers/games";
 
 export const Skins = ({id, icon, text, index, moveCard}) => {
     const style = {
@@ -16,6 +18,13 @@ export const Skins = ({id, icon, text, index, moveCard}) => {
         cursor: 'move',
     }
     const {register, handleSubmit, errors} = useForm();
+
+    const dispatch = useDispatch();
+    const skins = useSelector(getAllSkins);
+    console.log(skins, 'TTTTTTTTTTTTTTTTTTTTTT')
+    useEffect(() => {
+        dispatch(getAllSkinsThunk());
+    }, [])
 
     const ref = useRef(null);
     const [, drop] = useDrop({
@@ -52,27 +61,33 @@ export const Skins = ({id, icon, text, index, moveCard}) => {
     const opacity = isDragging ? 0 : 1;
     drag(drop(ref));
 
+    const unique = [...new Set(skins)];
+    console.log(unique, 'EEEE')
+
     return (
         <div ref={ref} style={{
             ...style,
             opacity,
         }}>
+            { unique.map((item, i) => {
+                return (
             <Card>
-                <CardImg top width="100%" src={icon}/>
+                <CardImg top width="100%" src={item.skin_3d_url}/>
                 <CardBody>
                     <Form>
-                        <FormGroup>
+
+                        <FormGroup editable={{placeholder: ' '}}>
                             <label className="control-label" htmlFor="id">
                                 ID
                             </label>
                             <div className="mb-2">
-                                <input
+                                <div
                                     type="text"
                                     name="id"
                                     className="form-control"
                                     // defaultValue={props.id}
-                                    defaultValue={id}
-                                />
+                                    defaultValue={item.id}
+                                >{item.game_id}</div>
                             </div>
                         </FormGroup>
                         <FormGroup>
@@ -100,14 +115,34 @@ export const Skins = ({id, icon, text, index, moveCard}) => {
                                     name="name"
                                     ref={register({required: true})}
                                     className="form-control"
-                                    defaultValue={text}
+                                    // defaultValue={text}
+                                    defaultValue={item.skin_name}
                                 />
                             </div>
                             <span className="text-danger">{errors.name && 'Name is required.'}</span>
                         </FormGroup>
+                        <FormGroup>
+                            <label className="control-label" htmlFor="order">
+                                Order
+                            </label>
+                            <div className="mb-2">
+                                <input
+
+                                    type="number"
+                                    name="order"
+                                    ref={register({required: true})}
+                                    className="form-control"
+                                    defaultValue={item.game_skin_number}
+                                />
+                            </div>
+                            <span className="text-danger">{errors.name && 'Order is required.'}</span>
+                        </FormGroup>
+
                     </Form>
                 </CardBody>
-            </Card>
+            </Card>)})
+            }
+
         </div>
     );
 };
